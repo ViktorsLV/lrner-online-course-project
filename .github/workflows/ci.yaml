@@ -31,8 +31,8 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: docker build client
       run: |
-        docker build ./client -t viktors11/client
+        docker build ./client -t viktors11/lrner
     - name: docker push
       run: |
-        docker push viktors11/client
+        docker push viktors11/lrner
         
