@@ -39,9 +39,11 @@ function BlogSection() {
                                         <BlogPreview
                                             key={blog._id}
                                             title={blog.title}
+                                            slug={blog.slug}
                                             mainImage={blog.mainImage}
                                             description={(blog.description).slice(0, 100)}
                                             author={blog.author}
+                                            blogCategory={blog.blogCategory}
                                             date='unknown'
                                         />
                                     </div>
