@@ -1,0 +1,12 @@
+{
+  "name": "exam_code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}

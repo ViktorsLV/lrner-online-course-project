@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-layout {
+  padding: 1.25rem;
+  /* padding-top: 0px; */
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-size: 2.25rem /* 36px */;
+  line-height: 2.5rem /* 40px */;
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+h2 {
+  font-size: 1.5rem /* 24px */;
+  line-height: 2rem /* 32px */;
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+h3 {
+  font-size: 1.3rem /* 24px */;
+  line-height: 1.8rem /* 32px */;
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+h4 {
+  font-size: 1.2rem /* 24px */;
+  line-height: 1.6rem /* 32px */;
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.p-color {
+  color: #E43535;
+}
+
+.pshade-color {
+  color: #FD7575;
+}
+
+.s-color {
+  color: #8D81D2;
+}
+
+.sshade-color {
+  color: #AEA3ED;
+}
+
+.pbg-color {
+  background-color: #E43535;
+}
+
+.pbgshade-color {
+  background-color: #fdaeae;
+}
+
+.sbg-color {
+  background-color: #8D81D2;
+}
+
+.sbgshade-color {
+  background-color: #bcb4ea;
+}
+
+.hover\:bg-p-color:hover {
+  background-color: #E43535;
+}
+
+.hover\:bg-pshade-color:hover {
+  background-color: #fdaeae;
+}
+
+.hover\:bg-s-color:hover {
+  background-color: #8D81D2;
+}
+
+.hover\:bg-sshade-color:hover {
+  background-color: #bcb4ea;
+}
+
+.hover\:border-p-color:hover {
+  --tw-border-opacity: 4;
+    border-color: rgb(253 174 174 / var(--tw-border-opacity));
+}
+
+.hover\:shadow-p-color:hover {
+  --tw-shadow-color: #E43535;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.hover\:shadow-s-color:hover {
+  --tw-shadow-color: #8D81D2;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.hover\:shadow-pp-color:hover {
+  --tw-shadow-color: #fdaeae;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.hover\:shadow-ss-color:hover {
+  --tw-shadow-color: #bcb4ea;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.min-h-blog {
+  min-height: 450px;
+}
+
+.bgcourse{
+  height: 100%;
+  background: linear-gradient(0deg, #fff 77%, #1c1d1f 23%);
+}
+
+@media (min-width: 640px) {
+  .sm\:max-w-xxs {
+      max-width: 16rem/* 384px */;
+  }
+}
+
+.min-w-300 {
+  min-width: 300px;
+}
