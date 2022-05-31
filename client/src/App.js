@@ -22,6 +22,9 @@ import Checkout from "./pages/Checkout";
 import Footer from './components/common/Footer/Footer'
 import Learn from "./pages/Learn";
 import Article from "./pages/Article";
+import MyProfile from "./pages/Profile/MyProfile";
+import OrderHistory from "./pages/Profile/OrderHistory";
+import DeleteProfile from "./pages/Profile/DeleteProfile";
 
 const AppLayout = () => (
   <>
@@ -63,7 +66,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<Article />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/categories/:slug" element={<Category />} />
           <Route path="/course/:slug" element={<Course />} />
           <Route path="/course/:slug/learn" element={<Learn />} />
@@ -71,10 +73,17 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           
           <Route path="my-courses" element={<MyCourses />}>
-            {/* TODO: set link active on page load */}
             <Route index element={<OwnedCourses />} />
             <Route path="owned" element={<OwnedCourses />} />
             <Route path="liked" element={<LikedCourses />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
+          <Route path="profile" element={<Profile />} >
+            <Route index element={<MyProfile />} />
+            <Route path="my-profile" element={<MyProfile />} />
+            <Route path="order-history" element={<OrderHistory />} />
+            <Route path="delete-profile" element={<DeleteProfile />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 

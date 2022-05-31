@@ -108,3 +108,19 @@ export const getMyCourses = (userId) => {
     }`
     return query;
 }
+
+export const getMyOrders = (userId) => {
+    const query = `*[_type == "user" && slug.current == "${userId}"]{
+        "orders": *[_type == "order" && userId == ^._id]{
+            _createdAt, 
+            _id,
+            totalPrice, 
+            lastName,
+            firstName, 
+            paymentMethod,
+            shippingDetails,
+            orderItems
+          }
+      }`
+    return query;
+}

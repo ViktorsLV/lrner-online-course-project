@@ -67,7 +67,7 @@ const Navigation = () => {
                             <HeartIcon className='w-10 hover:text-neutral-500 cursor-pointer ' />
                         </NavLink>
 
-                        <NavLink to='/profile' className={({ isActive }) => isActive ? profileActive : 'rounded-full border-2 hover:border-neutral-500'}>
+                        <NavLink to='/profile/my-profile' className={({ isActive }) => isActive ? profileActive : 'rounded-full border-2 hover:border-neutral-500'}>
                             <img src={userInfo.picture} alt={userInfo.given_name} className='h-9 w-auto object-fill rounded-full' />
                         </NavLink>
 
