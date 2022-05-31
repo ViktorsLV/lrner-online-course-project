@@ -8,7 +8,6 @@ import { client } from '../utils/client';
 import { getCourse } from '../api/queries/course';
 import { Store } from '../utils/Store';
 import { toast, Zoom } from 'react-toastify';
-import { getUserOrdersList } from '../api/queries/user';
 import CourseAbout from '../components/CourseOverview/CourseAbout';
 import CourseSimilar from '../components/CourseOverview/CourseSimilar';
 import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewReviews';
@@ -24,8 +23,6 @@ const Course = () => {
     const userId = userInfo?.sub
 
     const query = getCourse(slug)
-    // const userCourseQuery = getUserOrdersList(userId)
-
     const existItem = cart.cartItems.find((x) => x._id === course._id);
 
     useEffect(() => {

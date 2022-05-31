@@ -1,17 +1,10 @@
-export const getUserOrderDetails = () => {
-    const query = `*[_type == "user"]{
-        "orders": *[_type=='order' && references(^._id)],
-      }`
-    return query;
-}
-
-export const getUserOrdersList = (userId) => {
+export const getMe = (userId) => {
     const query = `*[_type == "user" && _id == "${userId}"]{
-        "orders": *[_type == "order" && references(^._id)]{
-            orderItems[]{
-                _id
-            }
-        },
+        _id,
+        _createdAt,
+        firstName,
+        lastName,
+        avatar
     }`
     return query;
 }
@@ -31,8 +24,8 @@ export const getUserPurchasedCourses = (userId) => {
     const query = `*[_type == "user" && _id == "${userId}"]{
         "userId": _id,
         purchasedCourses[]->{
+            _id
           title,
-          _id
         }
       }`
     return query;
@@ -43,13 +36,13 @@ export const getUserLikedCoursesDetails = (userId) => {
         "userId": _id,
         likedCourses[]->{
             _id,
+            _updatedAt,
+            _createdAt,
             title,
             price,
             slug, 
             mainImage,
             description,
-            _updatedAt,
-            _createdAt,
             courseDuration,
             author -> {
               firstName,
@@ -74,13 +67,13 @@ export const getUserPurchasedCoursesDetails = (userId) => {
         "userId": _id,
         purchasedCourses[]->{
             _id,
+            _updatedAt,
+            _createdAt,
             title,
             price,
             slug, 
             mainImage,
             description,
-            _updatedAt,
-            _createdAt,
             courseDuration,
             author -> {
               firstName,
