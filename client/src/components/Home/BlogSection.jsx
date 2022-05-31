@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { client } from '../../../utils/client';
-import { getBlogs } from '../../../api/queries/blog';
-import Loader from '../../common/Loader';
-import BlogPreview from '../../Blog/BlogPreview';
+import { getBlogs } from '../../api/queries/blog';
+import { client } from '../../utils/client';
+import BlogPreview from '../Blog/BlogPreview';
+import Loader from '../common/Loader';
 
 function BlogSection() {
 
@@ -31,12 +31,13 @@ function BlogSection() {
                 <section>
                     <section className='custom-layout mb-10'>
                         <h2>Read our blogs</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6 ">
+                        <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
                             {blogs.length && blogs.map((blog, index) => {
                                 // console.log('Course', course);
                                 return (
-                                    <div key={blog._id} data-testid={`blog-preview-${index}`}>
+                                    // <div key={blog._id} >
                                         <BlogPreview
+                                            data-testid={`blog-preview-${index}`}
                                             key={blog._id}
                                             title={blog.title}
                                             slug={blog.slug}
@@ -46,7 +47,7 @@ function BlogSection() {
                                             blogCategory={blog.blogCategory}
                                             date='unknown'
                                         />
-                                    </div>
+                                    // </div>
                                 )
                             })}
                         </div>
