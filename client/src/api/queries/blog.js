@@ -19,7 +19,7 @@ export const getBlogs = () => {
 }
 
 export const getBlogsByCategory = (category) => {
-    const query = `*[_type == "blog" && "${category}" == blogCategory->slug.current][0...4]{
+    const query = `*[_type == "blog" && "${category}" == blogCategory->slug.current]{
         _id,
         title,
         slug, 
