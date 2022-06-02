@@ -21,6 +21,7 @@ const Category = () => {
     const categoryQuery = getCategory(slug)
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         const fetchCourses = async () => {
             try {
                 const courses = await client.fetch(query); // TODO: change to small portion of courses, like "TOP" courses

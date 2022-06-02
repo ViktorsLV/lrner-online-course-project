@@ -15,7 +15,7 @@ const Navigation = () => {
     const pages = [
         // { name: 'Explore', url: 'explore', id: 1 },
         // { name: 'About', url: 'about', id: 2 },
-        { name: 'Blog Posts', url: 'blog', id: 3 },
+        { name: 'Blog Posts', url: 'blog/business', id: 3 },
         { name: 'Contact Us', url: 'contact', id: 4 },
     ]
 

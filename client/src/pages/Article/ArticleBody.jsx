@@ -34,7 +34,7 @@ const ArticleBody = () => {
             {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
                 <div>
                     <div className='font-medium text-gray-400 flex mb-5'>
-                        <NavLink to={-1} className='hover:text-black'>Categories </NavLink>
+                        <NavLink to={-1} className='hover:text-black'>Blog </NavLink>
                         <ChevronRightIcon className='w-5 mx-1' />
                         <span className='text-black'> {article.title}</span>
                     </div>

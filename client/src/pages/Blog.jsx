@@ -7,7 +7,7 @@ const Blog = () => {
   return (
     <div>
       <BlogHeader />
-      <BlogArticles blogSection="Development articles" />
+      <BlogArticles />
     </div>
   )
 }

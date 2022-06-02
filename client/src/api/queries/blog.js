@@ -18,6 +18,26 @@ export const getBlogs = () => {
     return query
 }
 
+export const getBlogsByCategory = (category) => {
+    const query = `*[_type == "blog" && "${category}" == blogCategory->slug.current][0...4]{
+        _id,
+        title,
+        slug, 
+        mainImage,
+        description,
+        blogCategory->{
+            title,
+            slug
+        },
+        author -> {
+          firstName,
+          lastName,
+          avatar,
+       },
+    }`
+    return query
+}
+
 export const getBlogCategories = () => {
     const query = `*[_type == "blogCategory"]{
             _id,
@@ -50,3 +70,4 @@ export const getBlogArticle = (slug) => {
     }`
     return query
 }
+

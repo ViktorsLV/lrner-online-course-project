@@ -9,7 +9,7 @@ function BlogPreview({ slug, mainImage, title, author, description, blogCategory
 				<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg py-5 ">
 					<div className="flex flex-wrap no-underline hover:no-underline">
 						<p id="development" className="w-full font-bold text-sm text-gray-900 px-6">{blogCategory?.title}</p>
-						<Link to={`/blog/${slug?.current}`}>
+						<Link to={`/blog/${blogCategory?.slug.current}/${slug?.current}`}>
 							<p className="w-full font-bold hover:underline text-xl text-accent-500 px-6 pt-3 min-h-20">{title}</p>
 						</Link>
 					</div>
