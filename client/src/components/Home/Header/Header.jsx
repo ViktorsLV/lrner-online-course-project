@@ -1,5 +1,5 @@
 import React from 'react'
-import BaseButton from '../../common/BaseButton/BaseButton'
+// import BaseButton from '../../common/BaseButton/BaseButton'
 import banner_image from '../../../assets/Images/banner_image.svg'
 
 export default function Header() {
