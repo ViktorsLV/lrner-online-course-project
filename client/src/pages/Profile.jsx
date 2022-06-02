@@ -16,7 +16,7 @@ const Profile = () => {
         if (!userInfo) {
             navigate('/login');
         }
-        console.log(userInfo);
+        // console.log(userInfo);
         setUser(userInfo)
     }, [navigate, userInfo]);
 
@@ -31,7 +31,7 @@ const Profile = () => {
                     />
                 </div>
                 <div className='border w-0.5 bg-black border-black'></div>
-                <div className="flex flex-col items-center w-full justify-center py-12 px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col items-center w-full py-12 px-4 sm:px-6 lg:px-8">
                     <Outlet />
                 </div>
             </div>

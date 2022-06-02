@@ -105,17 +105,30 @@ export const getMyCourses = (userId) => {
 }
 
 export const getMyOrders = (userId) => {
-    const query = `*[_type == "user" && slug.current == "${userId}"]{
-        "orders": *[_type == "order" && userId == ^._id]{
-            _createdAt, 
-            _id,
-            totalPrice, 
-            lastName,
-            firstName, 
-            paymentMethod,
-            shippingDetails,
-            orderItems
-          }
+    const query = `*[_type == "order" && userId == "${userId}"]{
+        _createdAt, 
+        _id,
+        totalPrice, 
+        lastName,
+        firstName, 
+        paymentMethod,
+        shippingDetails,
+        orderItems
       }`
     return query;
 }
+// export const getMyOrders = (userId) => {
+//     const query = `*[_type == "user" && _id == "${userId}"]{
+//         "orders": *[_type == "order" && userId == ^._id]{
+//             _createdAt, 
+//             _id,
+//             totalPrice, 
+//             lastName,
+//             firstName, 
+//             paymentMethod,
+//             shippingDetails,
+//             orderItems
+//           }
+//       }`
+//     return query;
+// }

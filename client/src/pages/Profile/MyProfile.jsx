@@ -13,7 +13,6 @@ const MyProfile = () => {
   const [email, setEmail] = useState('')
   const [description, setDescription] = useState('')
 
-
   const { state } = useContext(Store);
   const { userInfo } = state;
 
@@ -73,7 +72,7 @@ const MyProfile = () => {
       {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
         <div className=''>
           <div className='mb-5'>
-            <h3 className="text-lg font-medium leading-6 text-gray-900">Profile</h3>
+            <h3>Profile</h3>
             <p className="mt-1 text-sm text-gray-600">
               This information will be displayed publicly so be careful what you share.
             </p>
