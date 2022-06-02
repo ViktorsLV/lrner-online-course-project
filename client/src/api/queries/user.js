@@ -4,7 +4,9 @@ export const getMe = (userId) => {
         _createdAt,
         firstName,
         lastName,
-        avatar
+        avatar,
+        email,
+        description
     }`
     return query;
 }

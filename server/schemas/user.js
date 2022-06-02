@@ -23,6 +23,11 @@ export default {
       },
     },
     {
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+    },
+    {
       name: 'avatar',
       title: 'Avatar',
       type: 'string',
@@ -30,7 +35,7 @@ export default {
     {
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      type: 'text',
     },
     {
       name: 'likedCourses',

@@ -3,12 +3,16 @@ import { getMe } from '../../api/queries/user';
 import Loader from '../../components/common/Loader';
 import { client } from '../../utils/client';
 import { Store } from '../../utils/Store';
+import { toast } from 'react-toastify';
 
 const MyProfile = () => {
   // const [state, setState] = useState({ me: [], error: '', loading: true });
   const [me, setMe] = useState({})
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
+  const [email, setEmail] = useState('')
+  const [description, setDescription] = useState('')
+
 
   const { state } = useContext(Store);
   const { userInfo } = state;
@@ -22,6 +26,8 @@ const MyProfile = () => {
         console.log(me)
 
         setMe(me[0])
+        setEmail(me[0].email ? me[0].email : '')
+        setDescription(me[0].description ? me[0].description : '')
         setLoading(false)
       } catch (err) {
         setLoading(false)
@@ -30,6 +36,37 @@ const MyProfile = () => {
     };
     fetchMe();
   }, []);
+
+  const changeProfile = async (e) => {
+    e.preventDefault()
+    console.log('submitted');
+    setLoading(true)
+    const data = {
+      email,
+      description
+    }
+
+    try {
+      await client
+        .patch(userInfo.sub)
+        .set(data)
+        .commit()
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error('Transaction failed: ', err.message)
+        })
+
+      setLoading(false)
+      setLoading(false);
+      toast("Profile info changed!");
+    } catch (error) {
+      console.log(error);
+      setError(error)
+      setLoading(false)
+    }
+  }
 
   return (
     <div className='w-full'>
@@ -43,13 +80,13 @@ const MyProfile = () => {
           </div>
 
           <div className="md:col-span-2 ">
-            <form action="#" method="POST">
+            <form action="#" method="POST" onSubmit={(e) => changeProfile(e)}>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
-                    
+
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-300">
                         First name
                       </label>
                       <input
@@ -59,12 +96,12 @@ const MyProfile = () => {
                         name="first-name"
                         id="first-name"
                         autoComplete="given-name"
-                        className="mt-1 focus:ring-accent-500 focus:border-accent-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        />
+                        className="mt-1 focus:ring-accent-500 focus:border-accent-500 block w-full shadow-sm sm:text-sm border-gray-300 text-gray-300 rounded-md"
+                      />
                     </div>
 
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-300">
                         Last name
                       </label>
                       <input
@@ -74,7 +111,7 @@ const MyProfile = () => {
                         name="last-name"
                         id="last-name"
                         autoComplete="family-name"
-                        className="mt-1 focus:ring-accent-500 focus:border-accent-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-accent-500 focus:border-accent-500 block w-full shadow-sm sm:text-sm border-gray-300 text-gray-300 rounded-md"
                       />
                     </div>
 
@@ -83,7 +120,9 @@ const MyProfile = () => {
                         Email address
                       </label>
                       <input
-                        type="text"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        type="email"
                         name="email-address"
                         id="email-address"
                         autoComplete="email"
@@ -92,17 +131,18 @@ const MyProfile = () => {
                     </div>
 
                     <div className="col-span-6 sm:col-span-4">
-                      <label htmlFor="about" className="block text-sm font-medium text-gray-700">
-                        About
+                      <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                        About You
                       </label>
                       <div className="mt-1">
                         <textarea
-                          id="about"
-                          name="about"
+                          onChange={(e) => setDescription(e.target.value)}
+                          value={description}
+                          id="description"
+                          name="description"
                           rows={3}
                           className="shadow-sm focus:ring-accent-500 focus:border-accent-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                           placeholder="you@example.com"
-                          defaultValue={''}
                         />
                       </div>
                       <p className="mt-2 text-sm text-gray-500">
