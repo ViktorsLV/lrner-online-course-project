@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getCategories } from '../../../api/queries/categories';
 import Loader from '../../common/Loader';
+import DynamicIcon from '../../common/DynamicIcon';
 
 function CategoriesSection() {
   const [state, setState] = useState({ categories: [], error: '', loading: true });
@@ -41,7 +42,13 @@ function CategoriesSection() {
     <div className='custom-layout'>
       {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
         <div>
-          <h2 className=''>Categories</h2>
+          <div className='flex justify-between'>
+            <h2 className=''>Categories</h2>
+            <div className='flex text-gray-400'>
+              <p className='text-lg mr-2'>Scroll </p>
+              <DynamicIcon icon="ChevronDoubleRightIcon" width="6" height="6"/>
+            </div>
+          </div>
           <motion.div ref={carousel} whileTap={{ cursor: 'grabbing' }} className='cursor-grab overflow-y-hidden'>
             <motion.div drag='x' dragConstraints={{ right: 0, left: -width }} className='flex'>
 

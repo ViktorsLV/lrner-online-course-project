@@ -13,7 +13,7 @@ const Home = () => {
       <InfoSection/>
       <CategoriesSection/>
       <CourseSection/>
-      <InstructorSection/>
+      {/* <InstructorSection/> */}
       <BlogSection />
     </div>
   )
