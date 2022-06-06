@@ -19,7 +19,6 @@ const CheckoutSummary = () => {
         if (cartItems.length === 0) {
             navigate('/cart');
         }
-        console.log(userInfo);
     }, [cartItems]);
 
     const finishOrder = async () => {
@@ -68,15 +67,16 @@ const CheckoutSummary = () => {
                 .commit()
                 .then((res) => {
                     console.log(res);
+                    dispatch({ type: 'CART_CLEAR' });
+                    toast("Order Placed!");
+                    jsCookie.remove('cartItems');
                 })
                 .catch((err) => {
                     console.error('Transaction failed: ', err.message)
+                    toast("Something went wrong... Try again later!");
                 })
 
-            dispatch({ type: 'CART_CLEAR' });
-            jsCookie.remove('cartItems');
             setLoading(false);
-            toast("Order Placed!");
 
             // navigate(`/order/${data}`);
         } catch (err) {
