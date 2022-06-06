@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const CourseOverviewHeader = ({ title, description, authorFirstName, authorLastName, createdAt, updatedAt, reviewCount, tags }) => {
-    console.log('TAGS', tags)
     return (
         <div className='mb-28'>
             <div className='mt-10 flex flex-col gap-1 text-white'>

@@ -82,17 +82,17 @@ const Course = () => {
     return (
         <div>
             {loading ? <Loader loading={loading} /> : error ? (<div>error message and btn to go back</div>) : (
-                <div className='bgcourse custom-layout'>
-                    <div className='font-medium flex'>
-                        <NavLink to={'/'} className='text-accent-500 hover:text-white'>{capitalize(course?.category.title)} </NavLink>
-                        <ChevronRightIcon className='w-5 mx-1 text-white' />
-                        <span className='text-white'> {capitalize(course?.title)}</span>
-                    </div>
+                <div>
+                    <div className='bg-neutral-500 lg:relative custom-layout flex flex-col w-full'>
+                        <div className='font-medium flex'>
+                            <NavLink to={'/'} className='text-accent-500 hover:text-white'>{capitalize(course?.category.title)} </NavLink>
+                            <ChevronRightIcon className='w-5 mx-1 text-white' />
+                            <span className='text-white'> {capitalize(course?.title)}</span>
+                        </div>
 
-                    {/* <div className='grid grid-cols-3 sm:grid-cols-1 gap-3'> */}
-                    <div className='flex flex-col'>
-                        <div className='flex flex-row'>
-                            <div className='mx-10'>
+                        {/* Course Overview */}
+                        <div className='flex lg:flex-row flex-col-reverse w-full'>
+                            <div className='mx-10 lg:w-3/5 w-full hidden lg:block'>
                                 <CourseOverviewHeader
                                     title={course.title}
                                     description={course.description}
@@ -104,14 +104,13 @@ const Course = () => {
                                     reviewCount={course.reviews?.length || 0}
                                     tags={course.tags}
                                 />
-                                <CourseAbout description={course.description}/>
-                                <CourseSimilar />
                             </div>
 
-                            <div>
+                            <div className='mx-auto mt-5 lg:mt-0 lg:w-1/3 lg:absolute lg:right-5'>
                                 <CourseOverviewCard
                                     title={course.title}
                                     image={course.mainImage}
+                                    description={course.description}
                                     authorFirstName={course.author.firstName}
                                     authorLastName={course.author.lastName}
                                     createdAt={course._createdAt}
@@ -123,14 +122,20 @@ const Course = () => {
                                     onClick={addToCartHandler}
                                     buttonText={existItem ? 'Go to cart' : 'Add to cart'}
                                     slug={slug}
+                                    reviewCount={course.reviews?.length || 0}
                                 //tags={course.tags}
                                 />
                             </div>
                         </div>
-                        <CourseOverviewReviews 
-                            reviews={course.reviews}
-                        />
+
                     </div>
+
+                    <div className='mt-10 lg:w-2/3 w-full'>
+                        <CourseAbout description={course.description} />
+                        <CourseSimilar />
+                    </div>
+
+                    <CourseOverviewReviews reviews={course.reviews} />
                 </div>
             )}
         </div>
