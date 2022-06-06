@@ -68,10 +68,5 @@ export default {
             title: 'Paid Date',
             type: 'datetime',
         },
-        {
-            name: 'createdAt',
-            title: 'Created At',
-            type: 'datetime',
-        },
     ],
 };

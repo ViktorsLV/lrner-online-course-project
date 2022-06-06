@@ -7,8 +7,8 @@ import { Store } from '../utils/Store';
 
 const Checkout = () => {
     const navigate = useNavigate()
-    const { state, dispatch } = useContext(Store);
-    const { userInfo, cart } = state;
+    const { state } = useContext(Store);
+    const { userInfo } = state;
 
     useEffect(() => {
         if (!userInfo) {

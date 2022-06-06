@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from "react-router-dom";
 import CategoriesSection from "../CategoriesSection";
 
@@ -17,7 +17,7 @@ describe("CategoryCard", () => {
         );
 
         const categoryDivElement = await screen.findByTestId("category-item-11")
-        expect(categoryDivElement).toBeInTheDocument();
+        await waitFor(() =>expect(categoryDivElement).toBeInTheDocument());
     });
 
 })

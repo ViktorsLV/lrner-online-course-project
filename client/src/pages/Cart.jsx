@@ -35,7 +35,7 @@ const Cart = () => {
             <p className='mb-5'>Your cart is empty. Explore the shop to find a course and add it to cart! </p>
             <div className='w-max'>
               <BaseButton
-                text='Explore'
+                text='Explore Courses'
                 onClick={handleClick}
               />
             </div>

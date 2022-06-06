@@ -9,6 +9,8 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Category from "./pages/Category";
 import Contact from './pages/Contact';
+import Terms from './pages/Terms';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import Course from "./pages/Course";
 import Home from './pages/Home';
 import Login from "./pages/Login";
@@ -22,6 +24,9 @@ import Checkout from "./pages/Checkout";
 import Footer from './components/common/Footer/Footer'
 import Learn from "./pages/Learn";
 import Article from "./pages/Article";
+import MyProfile from "./pages/Profile/MyProfile";
+import OrderHistory from "./pages/Profile/OrderHistory";
+import DeleteProfile from "./pages/Profile/DeleteProfile";
 
 const AppLayout = () => (
   <>
@@ -45,7 +50,8 @@ const EmptyLayout = () => (
   </>
 );
 
-function App() {
+const App = () => {
+
   return (
     <>
       <ToastContainer />
@@ -61,20 +67,28 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<Article />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/blog/:categorySlug" element={<Blog />} />
+          <Route path="/blog/:categorySlug/:authorSlug/:slug" element={<Article />} />
           <Route path="/categories/:slug" element={<Category />} />
           <Route path="/course/:slug" element={<Course />} />
           <Route path="/course/:slug/learn" element={<Learn />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
-          
+
           <Route path="my-courses" element={<MyCourses />}>
-            {/* TODO: set link active on page load */}
             <Route index element={<OwnedCourses />} />
             <Route path="owned" element={<OwnedCourses />} />
             <Route path="liked" element={<LikedCourses />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
+          <Route path="profile" element={<Profile />} >
+            <Route index element={<MyProfile />} />
+            <Route path="my-profile" element={<MyProfile />} />
+            <Route path="order-history" element={<OrderHistory />} />
+            <Route path="delete-profile" element={<DeleteProfile />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 

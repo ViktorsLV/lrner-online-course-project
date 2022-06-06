@@ -67,14 +67,23 @@ export default {
       to: { type: 'category' },
     },
     // {
-    // name: 'purchasedBy',
-    // title: 'Purchased By',
-    // type: 'reference',
-    // of: [{
-    //   to: { type: 'user' },
-    //   type: 'reference',
-    // }],
+    //   name: 'purchasedBy',
+    //   title: 'Purchased By',
+    //   type: 'array',
+    //   of: [{
+    //     type: 'reference',
+    //     to: [{ type: 'user' }],
+    //   }],
     // },
+    {
+      name: 'likedBy',
+      title: 'Liked By',
+      type: 'array',
+      of: [{
+        type: 'reference',
+        to: [{ type: 'user' }],
+      }],
+    },
     {
       name: 'description',
       title: 'Description',
@@ -96,12 +105,6 @@ export default {
         },
       ]
     }
-    // {
-    //   name: 'reviews',
-    //   title: 'Reviews',
-    //   type: 'reference',
-    //   to: [{ type: 'review' }],
-    // }
   ],
   preview: {
     select: {

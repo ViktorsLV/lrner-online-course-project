@@ -3,7 +3,7 @@ import Review from './Review'
 
 const CourseOverviewReviews = ({ reviews }) => {
     return (
-        <div className='mx-10'>
+        <div className='my-10'>
             <div className='mx-10 mt-8'>
                 <h2 className='mb-4 lg:text-left'>Reviews</h2>
                 {reviews ? reviews.map(review => {

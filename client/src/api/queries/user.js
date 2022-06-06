@@ -1,17 +1,12 @@
-export const getUserOrderDetails = () => {
-    const query = `*[_type == "user"]{
-        "orders": *[_type=='order' && references(^._id)],
-      }`
-    return query;
-}
-
-export const getUserOrdersList = (userId) => {
+export const getMe = (userId) => {
     const query = `*[_type == "user" && _id == "${userId}"]{
-        "orders": *[_type == "order" && references(^._id)]{
-            orderItems[]{
-                _id
-            }
-        },
+        _id,
+        _createdAt,
+        firstName,
+        lastName,
+        avatar,
+        email,
+        description
     }`
     return query;
 }
@@ -20,8 +15,8 @@ export const getUserLikedCourses = (userId) => {
     const query = `*[_type == "user" && _id == "${userId}"]{
         "userId": _id,
         likedCourses[]->{
-          title,
-          _id
+            _id,
+            title
         }
       }`
     return query;
@@ -31,8 +26,8 @@ export const getUserPurchasedCourses = (userId) => {
     const query = `*[_type == "user" && _id == "${userId}"]{
         "userId": _id,
         purchasedCourses[]->{
+            _id,
           title,
-          _id
         }
       }`
     return query;
@@ -43,13 +38,13 @@ export const getUserLikedCoursesDetails = (userId) => {
         "userId": _id,
         likedCourses[]->{
             _id,
+            _updatedAt,
+            _createdAt,
             title,
             price,
             slug, 
             mainImage,
             description,
-            _updatedAt,
-            _createdAt,
             courseDuration,
             author -> {
               firstName,
@@ -64,6 +59,7 @@ export const getUserLikedCoursesDetails = (userId) => {
                 title,
                 slug
             },
+            "likeCount": count(likedBy)
         }
       }`
     return query;
@@ -74,13 +70,13 @@ export const getUserPurchasedCoursesDetails = (userId) => {
         "userId": _id,
         purchasedCourses[]->{
             _id,
+            _updatedAt,
+            _createdAt,
             title,
             price,
             slug, 
             mainImage,
             description,
-            _updatedAt,
-            _createdAt,
             courseDuration,
             author -> {
               firstName,
@@ -95,6 +91,7 @@ export const getUserPurchasedCoursesDetails = (userId) => {
                 title,
                 slug
             },
+            "likeCount": count(likedBy)
         }
       }`
     return query;
@@ -108,3 +105,33 @@ export const getMyCourses = (userId) => {
     }`
     return query;
 }
+
+export const getMyOrders = (userId) => {
+    const query = `*[_type == "order" && userId == "${userId}"]{
+        _createdAt, 
+        _id,
+        totalPrice, 
+        lastName,
+        firstName, 
+        paymentMethod,
+        shippingDetails,
+        orderItems
+      }`
+    return query;
+}
+
+// export const getMyOrders = (userId) => {
+//     const query = `*[_type == "user" && _id == "${userId}"]{
+//         "orders": *[_type == "order" && userId == ^._id]{
+//             _createdAt, 
+//             _id,
+//             totalPrice, 
+//             lastName,
+//             firstName, 
+//             paymentMethod,
+//             shippingDetails,
+//             orderItems
+//           }
+//       }`
+//     return query;
+// }

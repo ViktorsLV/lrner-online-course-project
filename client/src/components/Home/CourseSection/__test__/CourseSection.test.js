@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from "react-router-dom";
 import CourseSection from '../CourseSection';
 
@@ -16,8 +16,8 @@ describe("CategoryCard", () => {
             <MockCourseSection />
         );
 
-        const courseDivElement = await screen.findByTestId("course-card-1")
-        expect(courseDivElement).toBeInTheDocument();
+        const courseDivElement = await  screen.findByTestId("course-card-1")
+        await waitFor(() => expect(courseDivElement).toBeInTheDocument());
 
     });
 })

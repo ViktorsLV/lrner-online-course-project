@@ -1,8 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from "react-router-dom";
-import CourseCard from '../../CourseCard';
-
-
+import CourseCard from '../CourseCard';
 
 const MockCourseCard = () => {
     return (
@@ -12,21 +10,13 @@ const MockCourseCard = () => {
     )
 }
 
-//only finding lessons cus its static..
 describe("CourseCard", () => {
     it('should have lessons', async () => {
         render(
-            <MockCourseCard/>
+            <MockCourseCard />
         );
 
         const cardDivElement = await screen.findByText(/lessons/i)
-        expect(cardDivElement).toBeInTheDocument();
+        await waitFor(() => expect(cardDivElement).toBeInTheDocument());
     });
-
-
-
-
-
-
-
 })

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { LoginIcon } from '@heroicons/react/outline'
 import { Store } from "../utils/Store";
+import { Outlet } from 'react-router-dom'
+import ProfileNavigation from "../components/Profile/ProfileNavigation";
 
 const Profile = () => {
     const [user, setUser] = useState({})
@@ -15,21 +16,24 @@ const Profile = () => {
         if (!userInfo) {
             navigate('/login');
         }
-        console.log(userInfo);
+        // console.log(userInfo);
         setUser(userInfo)
     }, [navigate, userInfo]);
 
-    // if (isLoading || loading) {
-    //     return <div>Loading ...</div>;
-    // }
-
     return (
         user && (
-            <div className="min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-                <h1 className='text-3xl mb-4'>Profile page</h1>
-                <img src={user.picture} alt={user.family_name} />
-                <h2>{user.given_name} {user.family_name}</h2>
-                <h2>{user.email}</h2>
+            <div className="flex flex-col min-h-full py-20 lg:flex-row">
+                <div className='w-full lg:w-1/4'>
+                    <ProfileNavigation
+                        avatar={user.picture}
+                        firstName={user.given_name}
+                        lastName={user.family_name}
+                    />
+                </div>
+                <div className='border w-full lg:w-0.5  bg-black border-black'></div>
+                <div className="flex flex-col items-center w-full py-12 px-4 sm:px-6 lg:px-8">
+                    <Outlet />
+                </div>
             </div>
         )
     );

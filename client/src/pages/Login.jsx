@@ -65,7 +65,7 @@ function Login() {
         <>
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-8">
-                    <div className='border rounded-sm pt-14 pb-6 px-6 '>
+                    <div className='border-4 rounded-md border-accent-500 pt-14 pb-6 px-6 '>
                         <img
                             className="mx-auto h-16 w-auto mb-48"
                             src={logo}

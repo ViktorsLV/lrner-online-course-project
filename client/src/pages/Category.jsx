@@ -6,8 +6,9 @@ import { client } from '../utils/client';
 import { getCategory } from '../api/queries/categories';
 import { getCoursesByCategory } from '../api/queries/course';
 import Loader from '../components/common/Loader';
-import CourseCard from '../components/CourseCard';
 
+import no_data from '../assets/Images/no_data.svg'
+import CourseCard from '../components/CourseCard/CourseCard';
 
 const Category = () => {
     const { slug } = useParams();
@@ -21,6 +22,7 @@ const Category = () => {
     const categoryQuery = getCategory(slug)
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         const fetchCourses = async () => {
             try {
                 const courses = await client.fetch(query); // TODO: change to small portion of courses, like "TOP" courses
@@ -32,7 +34,7 @@ const Category = () => {
                 console.log(err);
             }
         };
-        
+
         const fetchCategoryDetails = async () => {
             try {
                 const category = await client.fetch(categoryQuery);
@@ -68,7 +70,7 @@ const Category = () => {
                     <div className='mt-10'>
                         <h2>Featured courses</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
-                            {courses && courses.map(course => {
+                            {courses.length > 0 ? courses.map(course => {
                                 // console.log('Course', course);
                                 return (
                                     <CourseCard
@@ -84,14 +86,20 @@ const Category = () => {
                                         tags={course.tags}
                                         categories={course.categories}
                                         slug={course.slug.current}
+                                        reviewCount={course.reviews?.length || 0}
+                                        likeCount={course.likeCount}
                                     />
                                 )
-                            })}
+                            }) :
+                                <div className='w-full mx-auto mt-20 flex flex-col justify-center items-center'>
+                                    <img src={no_data} alt="No Articles Found" className='w-3/5 h-auto' />
+                                    <p className='mt-3'>No courses found in this category...</p>
+                                </div>
+                            }
                         </div>
                     </div>
 
-                    {/* Other */}
-                    <div className='mt-10'>
+                    {/* <div className='mt-10'>
                         <h2>Courses to get your started</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
                             {courses && courses.map(course => {
@@ -114,7 +122,7 @@ const Category = () => {
                                 )
                             })}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             )}
         </div>

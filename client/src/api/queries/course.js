@@ -33,7 +33,8 @@ export const getCourse = (slug) => {
                 avatar,
                 slug
             }
-        }
+        },
+        "likeCount": count(likedBy)
     }`
     return query
 }
@@ -64,7 +65,72 @@ export const getCourses = () => {
             review,
             rating,
             _id,
-        }
+        },
+        "likeCount": count(likedBy)
+    }`
+    return query
+}
+
+export const getLatestCourses = () => {
+    const query = `*[_type == "course" ] | order(_createdAt desc)[0...4]{
+        _id,
+        title,
+        price,
+        slug, 
+        mainImage,
+        courseDuration,
+        _createdAt,
+        author -> {
+          firstName,
+          lastName,
+          avatar,
+       },
+       tags[]->{
+        _id,
+        name
+        },
+        category->{
+            title,
+            slug
+        },
+        reviews[]->{
+            review,
+            rating,
+            _id,
+        },
+        "likeCount": count(likedBy)
+    }`
+    return query
+}
+
+export const getTopCourses = () => {
+    const query = `*[_type == "course" && (count(reviews[]) > 0)][0...4]{
+        _id,
+        title,
+        price,
+        slug, 
+        mainImage,
+        courseDuration,
+        _createdAt,
+        author -> {
+          firstName,
+          lastName,
+          avatar,
+       },
+       tags[]->{
+        _id,
+        name
+        },
+        category->{
+            title,
+            slug
+        },
+        reviews[]->{
+            review,
+            rating,
+            _id,
+        },
+        "likeCount": count(likedBy)
     }`
     return query
 }
@@ -90,7 +156,8 @@ export const getCoursesByCategory = (slug) => {
             title,
             slug,
             description
-        }
+        },
+        "likeCount": count(likedBy)
     }`
     return query;
 }
