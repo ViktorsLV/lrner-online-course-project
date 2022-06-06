@@ -15,7 +15,7 @@ export default function Header() {
                         <BaseButton text='Get Started' />
                     </div> */}
                 </div>
-                <div>
+                <div className='hidden md:block'>
                     <img src={banner_image} alt="Course App" />
                 </div>
             </div>
