@@ -37,7 +37,7 @@ const BlogArticles = ({ blogSection }) => {
             {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
                 <section>
                     <section className='custom-layout mb-10'>
-                        <h2>{ } Articles</h2>
+                        <h2>Articles</h2>
                         {blogs.length > 0 ?
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6 ">
                                 {blogs.map(blog => {
