@@ -69,6 +69,68 @@ export const getCourses = () => {
     return query
 }
 
+export const getLatestCourses = () => {
+    const query = `*[_type == "course" ] | order(_createdAt desc)[0...4]{
+        _id,
+        title,
+        price,
+        slug, 
+        mainImage,
+        courseDuration,
+        _createdAt,
+        author -> {
+          firstName,
+          lastName,
+          avatar,
+       },
+       tags[]->{
+        _id,
+        name
+        },
+        category->{
+            title,
+            slug
+        },
+        reviews[]->{
+            review,
+            rating,
+            _id,
+        }
+    }`
+    return query
+}
+
+export const getTopCourses = () => {
+    const query = `*[_type == "course" && (count(reviews[]) > 0)][0...4]{
+        _id,
+        title,
+        price,
+        slug, 
+        mainImage,
+        courseDuration,
+        _createdAt,
+        author -> {
+          firstName,
+          lastName,
+          avatar,
+       },
+       tags[]->{
+        _id,
+        name
+        },
+        category->{
+            title,
+            slug
+        },
+        reviews[]->{
+            review,
+            rating,
+            _id,
+        }
+    }`
+    return query
+}
+
 export const getCoursesByCategory = (slug) => {
     const query = `*[_type == "course" && "${slug}" == category->slug.current]{
         _id,
