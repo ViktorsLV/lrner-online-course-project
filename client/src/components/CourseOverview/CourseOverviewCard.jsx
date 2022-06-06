@@ -31,15 +31,17 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
   const likeQuery = getUserLikedCourses(userId)
   const purchaseQuery = getUserPurchasedCourses(userId)
 
+  const alreadyLiked = !!(likes?.filter((like) => like?._id === id))?.length;
+  const alreadyPurchased = !!(purchases?.filter((p) => p?._id === id))?.length;
+
   useEffect(() => {
     if (userInfo !== null) {
       getUserLikes()
       getUserPurchases()
     }
+    console.log(alreadyPurchased);
   }, [userInfo])
 
-  const alreadyLiked = !!(likes?.filter((like) => like?._id === id))?.length;
-  const alreadyPurchased = !!(purchases?.filter((p) => p?._id === id))?.length;
 
   const getUserLikes = async () => {
     try {
@@ -54,6 +56,7 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
     try {
       const purchasedCourses = await client.fetch(purchaseQuery)
       setPurchases(purchasedCourses[0].purchasedCourses)
+      console.log(purchasedCourses);
     } catch (error) {
       console.log(error);
     }

@@ -15,8 +15,8 @@ export const getUserLikedCourses = (userId) => {
     const query = `*[_type == "user" && _id == "${userId}"]{
         "userId": _id,
         likedCourses[]->{
-          title,
-          _id
+            _id,
+            title
         }
       }`
     return query;
@@ -26,8 +26,8 @@ export const getUserPurchasedCourses = (userId) => {
     const query = `*[_type == "user" && _id == "${userId}"]{
         "userId": _id,
         purchasedCourses[]->{
-            _id
-          title,
+            _id,
+          title
         }
       }`
     return query;
