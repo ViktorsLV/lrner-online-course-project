@@ -9,6 +9,8 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Category from "./pages/Category";
 import Contact from './pages/Contact';
+import Terms from './pages/Terms';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import Course from "./pages/Course";
 import Home from './pages/Home';
 import Login from "./pages/Login";
@@ -48,7 +50,8 @@ const EmptyLayout = () => (
   </>
 );
 
-function App() {
+const App = () => {
+
   return (
     <>
       <ToastContainer />
@@ -64,6 +67,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/blog/:categorySlug" element={<Blog />} />
           <Route path="/blog/:categorySlug/:authorSlug/:slug" element={<Article />} />
           <Route path="/categories/:slug" element={<Category />} />
@@ -71,7 +76,7 @@ function App() {
           <Route path="/course/:slug/learn" element={<Learn />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
-          
+
           <Route path="my-courses" element={<MyCourses />}>
             <Route index element={<OwnedCourses />} />
             <Route path="owned" element={<OwnedCourses />} />
