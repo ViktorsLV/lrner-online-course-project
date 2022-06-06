@@ -24,7 +24,6 @@ const OwnedCourses = () => {
 
 
     useEffect(() => {
-        console.log(userId);
         const getPurchasedCourses = async () => {
             try {
                 const purchasedCourses = await client.fetch(courseQuery)
@@ -50,9 +49,8 @@ const OwnedCourses = () => {
                     <h2>Owned Courses</h2>
                     {purchasedCourses.length > 0 ? purchasedCourses.map(course => {
                         return (
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
+                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 ' key={course._id}>
                                 <CourseCard
-                                    key={course._id}
                                     title={course.title}
                                     mainImage={course.mainImage}
                                     price={course.price}
@@ -75,7 +73,7 @@ const OwnedCourses = () => {
                             <h3>You have not purchased any courses yet</h3>
                             <p>You can purchase courses from the courses page</p>
                             <div className='w-max mt-5'>
-                                <BaseButton text="Explore Courses" onClick={redirect}/>
+                                <BaseButton text="Explore Courses" onClick={redirect} />
                             </div>
                         </div>
                     }

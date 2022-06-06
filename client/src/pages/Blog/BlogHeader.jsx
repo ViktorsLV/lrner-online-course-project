@@ -31,17 +31,17 @@ export default function BlogHeader() {
         <>
             <div className='custom-layout'>
                 <div className='custom-layout flex flex-row gap-20'>
-                    <div className='mt-20 mb-10 max-w-lg'>
+                    <div className='max-w-lg md:mt-20 md:mb-10'>
                         <h1 className='my-2'>Read opinions of our experts!</h1>
                         <p>We are a leading marketplace platform for learning and teaching online. Explore some of our most popular blog posts and learn something new.</p>
                     </div>
 
-                    <div>
+                    <div className='hidden md:block'>
                         <img src={banner_image} alt="Course App" />
                     </div>
                 </div>
 
-                <div className='bg-black min-h-12 max-h-12 flex flex-row gap-5 justify-around px-20'>
+                <div className='bg-black min-h-12 max-h-max flex flex-row gap-5 sm:justify-around px-20 flex-wrap py-5'>
                     {categories && categories.map(category => (
                         // <NavLink key={category._id} replace to={`/blog/${category.slug.current}`} className='text-white font-bold'>
                         <NavLink key={category._id} replace to={`/blog/${category.slug.current}`} className={({ isActive }) => isActive ? activeLink : 'text-white my-auto hover:underline'}>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const BaseButton = ({text, onClick, baseColor, textColor}) => {
   return (
-    <div onClick={onClick} className={`bg-${baseColor}-500 hover:bg-${baseColor}-300 rounded-full px-8 py-2 text-${textColor} w-full text-center h-max hover:cursor-pointer`}>
+    <div onClick={onClick} style={{backgroundColor: baseColor, color: textColor}} className={`hover:bg-${baseColor} rounded-full px-8 py-2 w-full text-center h-max hover:cursor-pointer`}>
       {text}
     </div>
   )
