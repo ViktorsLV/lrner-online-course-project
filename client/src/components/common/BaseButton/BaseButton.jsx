@@ -13,7 +13,7 @@ BaseButton.defaultProps = {
   onClick: () => {
     console.log('button')
   },
-  baseColor: 'accent',
+  baseColor: '#FFD803',
   textColor: 'black'
 }
 
