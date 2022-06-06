@@ -5,8 +5,6 @@ import Loader from '../../common/Loader';
 import CourseCard from '../../CourseCard/CourseCard';
 
 function CourseSection() {
-
-    // const [state, setState] = useState({ topCourses: [], latestCourses: [], error: '', loading: true });
     const [topCourses, setTopCourses] = useState([])
     const [latestCourses, setLatestCourses] = useState([])
     const [error, setError] = useState('')
@@ -25,10 +23,10 @@ function CourseSection() {
         try {
             const latestCourses = await client.fetch(queryLatest);
             
-            setLatestCourses(latestCourses);
-            setLoading(false)
+                setLatestCourses(latestCourses);
+                setLoading(false)
         } catch (err) {
-            setError(err.message);
+            setError(err);
             setLoading(false)
         }
     };
@@ -39,7 +37,7 @@ function CourseSection() {
             setLoading(false)
             setTopCourses(topCourses);
         } catch (err) {
-            setError(err.message);
+            setError(err);
             setLoading(false)
         }
     };
