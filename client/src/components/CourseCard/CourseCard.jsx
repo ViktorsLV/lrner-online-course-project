@@ -1,8 +1,8 @@
 import React from 'react'
 import { HeartIcon, UsersIcon, CollectionIcon, ClockIcon, UserCircleIcon } from '@heroicons/react/outline'
-import { urlFor } from '../utils/client'
 import { NavLink } from 'react-router-dom'
-import fakeImage from '../assets/Images/blank_image.png'
+import fakeImage from '../../assets/Images/blank_image.png'
+import { urlFor } from '../../utils/client'
 
 const CourseCard = ({ title, author, mainImage, duration, lessons, price, likes, users, tags, categories, slug, reviewCount }) => {
     return (

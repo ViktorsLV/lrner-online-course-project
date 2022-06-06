@@ -6,8 +6,9 @@ import { client } from '../utils/client';
 import { getCategory } from '../api/queries/categories';
 import { getCoursesByCategory } from '../api/queries/course';
 import Loader from '../components/common/Loader';
-import CourseCard from '../components/CourseCard';
+
 import no_data from '../assets/Images/no_data.svg'
+import CourseCard from '../components/CourseCard/CourseCard';
 
 const Category = () => {
     const { slug } = useParams();

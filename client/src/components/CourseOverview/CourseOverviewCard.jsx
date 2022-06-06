@@ -40,7 +40,6 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
       getUserLikes()
       getUserPurchases()
     }
-    console.log(alreadyPurchased);
   }, [userInfo])
 
 
@@ -57,7 +56,6 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
     try {
       const purchasedCourses = await client.fetch(purchaseQuery)
       setPurchases(purchasedCourses[0].purchasedCourses)
-      console.log(purchasedCourses);
     } catch (error) {
       console.log(error);
     }

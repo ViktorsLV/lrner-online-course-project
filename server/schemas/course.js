@@ -96,12 +96,6 @@ export default {
         },
       ]
     }
-    // {
-    //   name: 'reviews',
-    //   title: 'Reviews',
-    //   type: 'reference',
-    //   to: [{ type: 'review' }],
-    // }
   ],
   preview: {
     select: {

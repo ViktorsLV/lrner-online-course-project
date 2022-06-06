@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getLatestCourses, getTopCourses } from '../../../api/queries/course';
 import { client } from '../../../utils/client';
 import Loader from '../../common/Loader';
-import CourseCard from '../../CourseCard'
+import CourseCard from '../../CourseCard/CourseCard';
 
 function CourseSection() {
 

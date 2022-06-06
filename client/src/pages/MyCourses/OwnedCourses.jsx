@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getUserPurchasedCoursesDetails } from '../../api/queries/user';
 import Loader from '../../components/common/Loader';
-import CourseCard from '../../components/CourseCard';
 import { client } from '../../utils/client';
 import { Store } from '../../utils/Store';
 import empty from '../../assets/Images/empty.svg'
 import BaseButton from '../../components/common/BaseButton/BaseButton';
+import CourseCard from '../../components/CourseCard/CourseCard';
 
 const OwnedCourses = () => {
     const navigate = useNavigate()
@@ -49,7 +49,7 @@ const OwnedCourses = () => {
                     <h2>Owned Courses</h2>
                     {purchasedCourses.length > 0 ? purchasedCourses.map(course => {
                         return (
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 ' key={course._id}>
+                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2' key={course._id}>
                                 <CourseCard
                                     title={course.title}
                                     mainImage={course.mainImage}
