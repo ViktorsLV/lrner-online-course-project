@@ -49,7 +49,7 @@ const OwnedCourses = () => {
                     <h2>Owned Courses</h2>
                     {purchasedCourses.length > 0 ? purchasedCourses.map(course => {
                         return (
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2' key={course._id}>
+                            <div key={course._id} className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2'>
                                 <CourseCard
                                     title={course.title}
                                     mainImage={course.mainImage}

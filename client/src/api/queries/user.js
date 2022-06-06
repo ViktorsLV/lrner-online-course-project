@@ -117,6 +117,7 @@ export const getMyOrders = (userId) => {
       }`
     return query;
 }
+
 // export const getMyOrders = (userId) => {
 //     const query = `*[_type == "user" && _id == "${userId}"]{
 //         "orders": *[_type == "order" && userId == ^._id]{

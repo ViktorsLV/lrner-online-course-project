@@ -76,6 +76,15 @@ export default {
     // }],
     // },
     {
+    name: 'likedBy',
+    title: 'Liked By',
+    type: 'array',
+    of: [{
+      type: 'reference',
+      to: [{ type: 'user' }],
+    }],
+    },
+    {
       name: 'description',
       title: 'Description',
       type: 'text',

@@ -6,10 +6,6 @@ import { DocumentDuplicateIcon } from '@heroicons/react/outline'
 import { DownloadIcon } from '@heroicons/react/outline'
 import { FolderRemoveIcon } from '@heroicons/react/outline'
 import { AcademicCapIcon } from '@heroicons/react/outline'
-// import { ShoppingCartIcon } from '@heroicons/react/outline'
-// import { NavLink } from 'react-router-dom'
-// import dayjs from 'dayjs'
-// import capitalize from '../../utils/capitalize'
 import { client, urlFor } from '../../utils/client'
 import BaseButton from '../common/BaseButton/BaseButton'
 import { FaTwitter } from 'react-icons/fa';
@@ -61,30 +57,55 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
     }
   }
 
-  const likeCourse = (userId) => {
+  const likeCourse = async (userId) => {
     if (!alreadyLiked) {
-      client.patch(userId).setIfMissing({ likedCourses: [] }).append('likedCourses', [{
+      const userPatch = client.patch(userId).setIfMissing({ likedCourses: [] }).append('likedCourses', [{
         _key: uuidv4(),
         _type: 'reference',
         _ref: id
       }])
-        .commit({ autoGenerateArrayKeys: true })
+
+      const coursePatch = client.patch(id).setIfMissing({ likedBy: [] }).append('likedBy', [{
+        _key: uuidv4(),
+        _type: 'reference',
+        _ref: userId
+      }])
+
+      await client
+        .transaction()
+        .patch(coursePatch)
+        .patch(userPatch)
+        .commit()
         .then((res) => {
           console.log(res);
           getUserLikes()
-        });
+        })
+        .catch((err) => {
+          console.error('Transaction failed: ', err.message)
+        })
     }
   };
 
-  const unLikeCourse = (userId) => {
+  const unLikeCourse = async (userId) => {
     if (alreadyLiked) {
       const courseToRemove = [`likedCourses[_ref == "${id}"]`]
-      client.patch(userId).unset(courseToRemove)
-        .commit({ autoGenerateArrayKeys: true })
+      const userPatch = client.patch(userId).unset(courseToRemove)
+      const userToRemove = [`likedBy[_ref == "${userId}"]`]
+
+      const coursePatch = client.patch(id).unset(userToRemove)
+
+      await client
+        .transaction()
+        .patch(coursePatch)
+        .patch(userPatch)
+        .commit()
         .then((res) => {
           console.log(res);
           getUserLikes()
-        });
+        })
+        .catch((err) => {
+          console.error('Transaction failed: ', err.message)
+        })
     }
   }
 
