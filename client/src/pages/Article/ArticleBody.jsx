@@ -1,37 +1,62 @@
 import React, { useEffect, useState } from 'react'
 import { ChevronRightIcon, UserCircleIcon } from '@heroicons/react/outline'
 import fakeImage from '../../assets/Images/blank_image.png'
-import { getBlogArticle } from '../../api/queries/blog';
+import { getBlogArticle, getBlogsByAuthor } from '../../api/queries/blog';
 import { client, urlFor } from '../../utils/client';
 import { Link, NavLink, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/common/Loader';
 
 const ArticleBody = () => {
-    const { slug } = useParams()
-    const [state, setState] = useState({ article: {}, error: '', loading: true });
-    const navigate = useNavigate()
+    const [article, setArticle] = useState('')
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [authorBlogs, setAuthorBlogs] = useState([])
 
-    const { loading, error, article } = state;
+    const navigate = useNavigate()
+    const { slug } = useParams()
+    const { authorSlug } = useParams()
+
     const query = getBlogArticle(slug)
+    const authorBlogQuery = getBlogsByAuthor(authorSlug)
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        const fetchBlogArticle = async () => {
-            try {
-                const article = await client.fetch(query);
-                console.log(article)
 
-                setState({ article: article[0], loading: false });
-            } catch (err) {
-                setState({ loading: false, error: err.message });
-            }
-        };
         fetchBlogArticle();
-    }, [slug]);
+        fetchAuthorBlogs();
+    }, [slug, authorSlug]);
+
+    const fetchBlogArticle = async () => {
+        setLoading(true)
+        try {
+            const article = await client.fetch(query);
+            console.log(article)
+
+            setArticle(article[0])
+            setLoading(false)
+        } catch (err) {
+            setLoading(false)
+            setError(err.message)
+        }
+    };
+
+    const fetchAuthorBlogs = async () => {
+        setLoading(true)
+        try {
+            const authorBlogs = await client.fetch(authorBlogQuery);
+            console.log(authorBlogs)
+
+            setAuthorBlogs(authorBlogs)
+            setLoading(false)
+        } catch (err) {
+            setLoading(false)
+            setError(err.message)
+        }
+    };
 
     return (
         <div className='custom-layout'>
-            {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
+            {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : article && (
                 <div>
                     <div className='font-medium text-gray-400 flex mb-5'>
                         <NavLink to={-1} className='hover:text-black'>Blog </NavLink>
@@ -45,7 +70,7 @@ const ArticleBody = () => {
                         </div>
                         <div className='flex flex-row justify-between'>
                             <div className='flex flex-row gap-4'>
-                                {article.author?.avatar ? <img className='ml-2 h-14 w-14 rounded-full min-w-14 min-h-14' src={article.author?.avatar} alt="Author" /> :
+                                {article.author?.avatar ? <img className='ml-2 h-14 w-14 rounded-full min-w-14 min-h-14' src={article.author?.avatar} alt="Author" referrerPolicy="no-referrer" /> :
                                     <UserCircleIcon className='h-14 w-14 min-w-14 min-h-14' />
                                 }
                                 <div>
@@ -71,7 +96,7 @@ const ArticleBody = () => {
                         <div>
                             <div className='border rounded-sm p-10'>
                                 <div className='flex flex-row gap-4 mb-5'>
-                                    {article.author?.avatar ? <img className='ml-2 h-14 w-14 rounded-full min-w-14 min-h-14' src={article.author?.avatar} alt="Author" /> :
+                                    {article.author?.avatar ? <img className='ml-2 h-14 w-14 rounded-full min-w-14 min-h-14' src={article.author?.avatar} alt="Author" referrerPolicy="no-referrer" /> :
                                         <UserCircleIcon className='h-14 w-14 min-w-14 min-h-14' />
                                     }
                                     <div>
@@ -85,15 +110,11 @@ const ArticleBody = () => {
                                 </div>
                                 <div className='mt-5'>
                                     <p className='mt-2 font-bold text-base'>Recent Articles By {article.author.firstName} {article.author.lastName}</p>
-                                    <Link to="#" className='mt-2 font-medium text-sm text-blue-700 hover:underline'>
-                                        <p>How much game development experience do you have?</p>
-                                    </Link>
-                                    <Link to="#" className='mt-2 font-medium text-sm text-blue-700 hover:underline'>
-                                        <p>Unity vs Unreal Engine: history</p>
-                                    </Link>
-                                    <Link to="#" className='mt-2 font-medium text-sm text-blue-700 hover:underline'>
-                                        <p>Unity vs. Unreal: Which Game Engine is Best For You?</p>
-                                    </Link>
+                                    {authorBlogs && authorBlogs.map(blog => (
+                                        <NavLink key={blog._id} to={`/blog/${blog.blogCategory.slug.current}/${article.author?.slug?.current}/${blog.slug?.current}`} className='mt-2 font-medium text-sm text-blue-700 hover:underline'>
+                                            <p>{blog.title}</p>
+                                        </NavLink>
+                                    ))}
                                 </div>
                             </div>
                         </div>

@@ -9,11 +9,12 @@ export const getBlogs = () => {
             title,
             slug
         },
-        author -> {
+        author->{
           firstName,
           lastName,
           avatar,
-       },
+          slug
+       }
     }`
     return query
 }
@@ -33,6 +34,7 @@ export const getBlogsByCategory = (category) => {
           firstName,
           lastName,
           avatar,
+          slug
        },
     }`
     return query
@@ -40,11 +42,11 @@ export const getBlogsByCategory = (category) => {
 
 export const getBlogCategories = () => {
     const query = `*[_type == "blogCategory"]{
-            _id,
-            title,
-            slug{
-                current
-            }
+        _id,
+        title,
+        slug{
+            current
+        }
     }`
     return query
 }
@@ -66,8 +68,23 @@ export const getBlogArticle = (slug) => {
           firstName,
           lastName,
           avatar,
+          slug
        },
     }`
     return query
 }
+
+export const getBlogsByAuthor = (userSlug) => {
+    const query = `*[_type == "blog" && "${userSlug}" == author->slug.current][0...3]{
+        _id,
+        _createdAt,
+        title,
+        slug, 
+        blogCategory->{
+            slug
+        },
+    }`
+    return query
+}
+
 

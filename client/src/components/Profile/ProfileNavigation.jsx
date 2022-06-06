@@ -13,7 +13,7 @@ const ProfileNavigation = ({ avatar, firstName, lastName }) => {
     return (
         <div className='flex flex-col p-5'>
             <div className='flex flex-col items-center mb-20 space-y-5'>
-                <img src={avatar} alt={firstName} className="w-2/3 rounded-full" />
+                <img src={avatar} alt={firstName} className="w-2/3 rounded-full" referrerPolicy="no-referrer"/>
                 <h3 className='text-md'>{firstName} {lastName}</h3>
             </div>
             <div className='flex flex-col justify-start space-y-3'>

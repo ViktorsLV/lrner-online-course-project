@@ -32,22 +32,19 @@ function BlogSection() {
                     <section className='custom-layout mb-10'>
                         <h2>Read our blogs</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
-                            {blogs.length && blogs.map((blog, index) => {
-                                // console.log('Course', course);
+                            {blogs.length > 0 && blogs.map((blog, index) => {
                                 return (
-                                    // <div key={blog._id} >
-                                        <BlogPreview
-                                            data-testid={`blog-preview-${index}`}
-                                            key={blog._id}
-                                            title={blog.title}
-                                            slug={blog.slug}
-                                            mainImage={blog.mainImage}
-                                            description={(blog.description).slice(0, 100)}
-                                            author={blog.author}
-                                            blogCategory={blog.blogCategory}
-                                            date='unknown'
-                                        />
-                                    // </div>
+                                    <BlogPreview
+                                        data-testid={`blog-preview-${index}`}
+                                        key={blog._id}
+                                        title={blog.title}
+                                        slug={blog.slug}
+                                        mainImage={blog.mainImage}
+                                        description={(blog.description).slice(0, 100)}
+                                        author={blog.author}
+                                        blogCategory={blog.blogCategory}
+                                        date='unknown'
+                                    />
                                 )
                             })}
                         </div>

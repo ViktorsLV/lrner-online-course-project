@@ -68,7 +68,7 @@ const Navigation = () => {
                         </NavLink>
 
                         <NavLink to='/profile/my-profile' className={({ isActive }) => isActive ? profileActive : 'rounded-full border-2 hover:border-neutral-500'}>
-                            <img src={userInfo.picture} alt={userInfo.given_name} className='h-9 w-auto object-fill rounded-full' />
+                            <img src={userInfo.picture} alt={userInfo.given_name} referrerPolicy="no-referrer" className='h-9 w-auto object-fill rounded-full' />
                         </NavLink>
 
                         <div onClick={logoutClickHandler} className='ml-8 flex flex-row hover:border-transparent rounded-full border-2 border-neutral-500 bg-white text-neutral-500 hover:text-white hover:bg-neutral-500 px-3 py-1 hover:cursor-pointer'>
