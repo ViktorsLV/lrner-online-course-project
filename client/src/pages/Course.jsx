@@ -16,7 +16,7 @@ import Loader from '../components/common/Loader';
 const Course = () => {
     const { slug } = useParams();
     const [state, setState] = useState({ course: [], error: '', loading: true });
-    const [userCourseList, setUserCourseList] = useState([])
+    // const [userCourseList, setUserCourseList] = useState([])
     const { state: { cart, userInfo }, dispatch } = useContext(Store);
     const navigate = useNavigate()
     const { loading, error, course } = state;
@@ -57,7 +57,6 @@ const Course = () => {
                         slug: course.slug.current,
                         price: course.price,
                         mainImage: course.mainImage,
-                        lessons: course.lessons,
                         duration: course.courseDuration,
                         author: course.author,
                         description: course.description

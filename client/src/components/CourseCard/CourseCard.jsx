@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import fakeImage from '../../assets/Images/blank_image.png'
 import { urlFor } from '../../utils/client'
 
-const CourseCard = ({ title, author, mainImage, duration, lessons, price, likes, users, tags, categories, slug, reviewCount }) => {
+const CourseCard = ({ title, author, mainImage, duration, lessons, price, likes, users, tags, categories, slug, reviewCount, likeCount }) => {
     return (
         <NavLink to={`/course/${slug}`}>
             <div className='flex flex-col border rounded-lg group cursor-pointer overflow-hidden shadow-md hover:shadow-accent-500'>
@@ -53,7 +53,7 @@ const CourseCard = ({ title, author, mainImage, duration, lessons, price, likes,
                             <div className='flex space-x-5'>
                                 <div className='flex'>
                                     <HeartIcon className='w-5 mr-1 text-accent-500' />
-                                    <p className='text-xs flex mt-1'> {likes}</p>
+                                    <p className='text-xs flex mt-1'> {likeCount ? likeCount : '0'}</p>
                                 </div>
                                 <div className='flex'>
                                     <UsersIcon className='w-5 mr-1 text-accent-500' />

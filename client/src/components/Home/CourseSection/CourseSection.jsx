@@ -25,6 +25,7 @@ function CourseSection() {
             
                 setLatestCourses(latestCourses);
                 setLoading(false)
+                console.log('COURSES', latestCourses)
         } catch (err) {
             setError(err);
             setLoading(false)
@@ -61,12 +62,12 @@ function CourseSection() {
                                             author={course.author}
                                             duration={course.courseDuration}
                                             lessons='445'
-                                            likes='423'
                                             users='3432'
                                             tags={course.tags}
                                             categories={course.categories}
                                             slug={course.slug.current}
                                             reviewCount={course.reviews?.length || 0}
+                                            likeCount={course.likeCount}
                                         />
                                     </div>
                                 )
@@ -94,6 +95,7 @@ function CourseSection() {
                                         categories={course.categories}
                                         slug={course.slug.current}
                                         reviewCount={course.reviews?.length || 0}
+                                        likeCount={course.likeCount}
                                     />
                                 )
                             })}

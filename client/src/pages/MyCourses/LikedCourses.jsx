@@ -63,6 +63,7 @@ const LikedCourses = () => {
                                     categories={course.categories}
                                     slug={course.slug.current}
                                     reviewCount={course.reviews?.length || 0}
+                                    likeCount={course.likeCount}
                                 />
                             </div>
                         )

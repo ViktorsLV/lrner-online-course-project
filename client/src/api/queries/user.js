@@ -27,7 +27,7 @@ export const getUserPurchasedCourses = (userId) => {
         "userId": _id,
         purchasedCourses[]->{
             _id,
-          title
+          title,
         }
       }`
     return query;
@@ -59,6 +59,7 @@ export const getUserLikedCoursesDetails = (userId) => {
                 title,
                 slug
             },
+            "likeCount": count(likedBy)
         }
       }`
     return query;
@@ -90,6 +91,7 @@ export const getUserPurchasedCoursesDetails = (userId) => {
                 title,
                 slug
             },
+            "likeCount": count(likedBy)
         }
       }`
     return query;

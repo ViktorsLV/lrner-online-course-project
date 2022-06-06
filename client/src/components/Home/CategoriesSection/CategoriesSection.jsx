@@ -21,7 +21,6 @@ function CategoriesSection() {
     const fetchCategories = async () => {
       try {
         const categories = await client.fetch(query);
-        console.log(categories)
 
         setState({ categories, loading: false });
       } catch (err) {
