@@ -38,14 +38,13 @@ function CategoriesSection() {
 
   return (
     // TODO: create skeleton loader ??
-    <div className='custom-layout mb-10'>
+    <div className='custom-layout'>
       {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
         <div>
           <h2 className=''>Categories</h2>
           <motion.div ref={carousel} whileTap={{ cursor: 'grabbing' }} className='cursor-grab overflow-y-hidden'>
             <motion.div drag='x' dragConstraints={{ right: 0, left: -width }} className='flex'>
 
-              {/* TODO: add smth if there are no courses in this category */}
               {categories && categories.map((category, index) => {
                 return (
                   <div data-testid={`category-item-${index}`} key={category._id}>

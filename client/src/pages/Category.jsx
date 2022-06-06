@@ -7,7 +7,7 @@ import { getCategory } from '../api/queries/categories';
 import { getCoursesByCategory } from '../api/queries/course';
 import Loader from '../components/common/Loader';
 import CourseCard from '../components/CourseCard';
-
+import no_data from '../assets/Images/no_data.svg'
 
 const Category = () => {
     const { slug } = useParams();
@@ -33,7 +33,7 @@ const Category = () => {
                 console.log(err);
             }
         };
-        
+
         const fetchCategoryDetails = async () => {
             try {
                 const category = await client.fetch(categoryQuery);
@@ -69,7 +69,7 @@ const Category = () => {
                     <div className='mt-10'>
                         <h2>Featured courses</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
-                            {courses && courses.map(course => {
+                            {courses.length > 0 ? courses.map(course => {
                                 // console.log('Course', course);
                                 return (
                                     <CourseCard
@@ -87,12 +87,16 @@ const Category = () => {
                                         slug={course.slug.current}
                                     />
                                 )
-                            })}
+                            }) :
+                                <div className='w-full mx-auto mt-20 flex flex-col justify-center items-center'>
+                                    <img src={no_data} alt="No Articles Found" className='w-3/5 h-auto' />
+                                    <p className='mt-3'>No courses found in this category...</p>
+                                </div>
+                            }
                         </div>
                     </div>
 
-                    {/* Other */}
-                    <div className='mt-10'>
+                    {/* <div className='mt-10'>
                         <h2>Courses to get your started</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
                             {courses && courses.map(course => {
@@ -115,7 +119,7 @@ const Category = () => {
                                 )
                             })}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             )}
         </div>
