@@ -34,7 +34,8 @@ export const getCourse = (slug) => {
                 slug
             }
         },
-        "likeCount": count(likedBy)
+        "likeCount": count(likedBy),
+        "reviewCount": count(reviews)
     }`
     return query
 }

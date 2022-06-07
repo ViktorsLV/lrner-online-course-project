@@ -59,7 +59,8 @@ const Course = () => {
                         mainImage: course.mainImage,
                         duration: course.courseDuration,
                         author: course.author,
-                        description: course.description
+                        description: course.description,
+                        reviewCount: course.reviewCount ? course.reviewCount : 0
                     },
                 });
                 toast("Added to cart!", {
@@ -107,6 +108,7 @@ const Course = () => {
 
                             <div className='mx-auto mt-5 lg:mt-0 lg:w-1/3 lg:absolute lg:right-5'>
                                 <CourseOverviewCard
+                                    onClick={addToCartHandler}
                                     title={course.title}
                                     image={course.mainImage}
                                     description={course.description}
@@ -118,7 +120,6 @@ const Course = () => {
                                     likes={course.likes}
                                     duration={course.courseDuration}
                                     id={course._id}
-                                    onClick={addToCartHandler}
                                     buttonText={existItem ? 'Go to cart' : 'Add to cart'}
                                     slug={slug}
                                     reviewCount={course.reviews?.length || 0}

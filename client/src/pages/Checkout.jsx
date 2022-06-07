@@ -24,7 +24,7 @@ const Checkout = () => {
                 <span className='text-neutral-500 font-bold'> Checkout</span>
             </div>
             <h1 className='mt-10'>Checkout</h1>
-            <div className='flex justify-between mt-10'>
+            <div className='flex justify-between mt-10 flex-col md:flex-row'>
                 <PaymentDetails />
                 <CheckoutSummary />
             </div>
