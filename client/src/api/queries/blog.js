@@ -74,8 +74,8 @@ export const getBlogArticle = (slug) => {
     return query
 }
 
-export const getBlogsByAuthor = (userSlug) => {
-    const query = `*[_type == "blog" && "${userSlug}" == author->slug.current][0...3]{
+export const getBlogsByAuthor = (userSlug, currentBlog) => {
+    const query = `*[_type == "blog" && "${userSlug}" == author->slug.current && "${currentBlog}" != slug.current][0...3]{
         _id,
         _createdAt,
         title,

@@ -17,7 +17,7 @@ const ArticleBody = () => {
     const { authorSlug } = useParams()
 
     const query = getBlogArticle(slug)
-    const authorBlogQuery = getBlogsByAuthor(authorSlug)
+    const authorBlogQuery = getBlogsByAuthor(authorSlug, slug)
 
     useEffect(() => {
         window.scrollTo(0, 0)
