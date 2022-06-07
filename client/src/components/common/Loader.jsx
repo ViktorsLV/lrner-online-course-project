@@ -5,7 +5,7 @@ const Loader = ({loading}) => {
     return (
         <div className='flex items-center h-96 justify-center'>
             <ClipLoader
-                color={"#FFD803"}
+                color={"#F5A343"}
                 loading={loading}
                 timeout={3000}
                 position='fixed'

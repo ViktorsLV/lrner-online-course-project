@@ -31,7 +31,7 @@ const CourseOverviewHeader = ({ title, description, authorFirstName, authorLastN
                 {tags && tags.map(tag => {
                     return (
                         <div key={tag._id}>
-                            <Link to='#' className='px-5 py-1 mr-2 rounded-full border border-gray-300 text-yellow-500 font-semibold text-sm flex align-center w-max cursor-pointer ease'>
+                            <Link to='#' className='px-5 py-1 mr-2 rounded-full border border-gray-300 text-accent-500 font-semibold text-sm flex align-center w-max cursor-pointer ease'>
                                 <p>{tag.name}</p>
                             </Link>
                         </div>)

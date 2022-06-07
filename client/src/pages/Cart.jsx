@@ -32,7 +32,8 @@ const Cart = () => {
 
           {!cartItems.length ? <div className='flex mx-auto flex-col justify-center items-center border-4 border-primary-500 p-5 mt-2'>
             <img src={empty_cart} alt="Course App" className='w-1/4 mb-5' />
-            <p className='mb-5'>Your cart is empty. Explore the shop to find a course and add it to cart! </p>
+            <h3>Your cart is empty</h3>
+            <p className='mb-5'>Explore the shop to find a course and add it to cart! </p>
             <div className='w-max'>
               <BaseButton
                 text='Explore Courses'
@@ -40,7 +41,7 @@ const Cart = () => {
               />
             </div>
           </div> :
-            <div className='flex md:flex-row md:space-x-10 flex-col space-x-0 chuj'>
+            <div className='flex md:flex-row md:space-x-10 flex-col space-x-0'>
               <CartList />
               <CartSummary />
             </div>}

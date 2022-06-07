@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Store } from '../../utils/Store';
 import BaseButton from '../common/BaseButton/BaseButton'
 import jsCookie from 'js-cookie'
@@ -106,7 +106,7 @@ const CheckoutSummary = () => {
             </div>
             <div className='mt-2'>
                 <p>Lrnr is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
-                <p className='mt-2'>By completing your purchase you agree to these <span className='cursor-pointer hover:underline text-accent-300'>Terms of Service.</span></p>
+                <p className='mt-2'>By completing your purchase you agree to these <NavLink to='/terms' className='cursor-pointer hover:underline text-accent-300'>Terms of Use.</NavLink></p>
             </div>
             {/* TODO: list items */}
             <div className='w-fit mx-auto mt-10'>
