@@ -12,10 +12,9 @@ const CourseCard = ({ title, author, mainImage, duration, lessons, price, likes,
                     : <img src={fakeImage} alt="Fake" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' />}
                 <div className='flex flex-col justify-between p-5 bg-primary-500 '>
                     <div className=''>
-
-                        <div className='flex  flex-row justify-between items-start mb-2'>
+                        <div className='flex flex-row justify-between items-start mb-2'>
                             <p className='text-base text-left font-bold text-neutral-500 leading-5 min-h-20'>{title.slice(0, 60)}</p>
-                            {author?.avatar ? <img className='ml-2 h-12 w-12 rounded-full min-w-12 min-h-12' src={author?.avatar} alt="Author" /> :
+                            {author?.avatar ? <img className='ml-2 h-12 w-12 object-cover rounded-full min-w-12 min-h-12' src={author?.avatar} alt="Author" /> :
                                 <UserCircleIcon className='w-12 h-12 min-w-12 min-h-12' />
                             }
                         </div>

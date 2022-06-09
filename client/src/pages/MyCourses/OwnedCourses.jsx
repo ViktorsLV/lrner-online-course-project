@@ -47,9 +47,9 @@ const OwnedCourses = () => {
             {loading ? (<Loader loading={loading} />) : (
                 <section className='mb-5'>
                     <h2>Owned Courses</h2>
-                    {purchasedCourses.length > 0 ? purchasedCourses.map(course => {
-                        return (
-                            <div key={course._id} className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2'>
+                        {purchasedCourses.length > 0 ? purchasedCourses.map(course => {
+                            return (
                                 <CourseCard
                                     title={course.title}
                                     mainImage={course.mainImage}
@@ -65,19 +65,19 @@ const OwnedCourses = () => {
                                     reviewCount={course.reviews?.length || 0}
                                     likeCount={course.likeCount}
                                 />
+                            )
+                        })
+                            :
+                            <div className='w-full mx-auto mt-20 flex flex-col justify-center items-center'>
+                                <img src={empty} alt="No Articles Found" className='w-1/5 h-auto mb-3' />
+                                <h3>You have not purchased any courses yet</h3>
+                                <p>You can purchase courses from the courses page</p>
+                                <div className='w-max mt-5'>
+                                    <BaseButton text="Explore Courses" onClick={redirect} />
+                                </div>
                             </div>
-                        )
-                    })
-                        :
-                        <div className='w-full mx-auto mt-20 flex flex-col justify-center items-center'>
-                            <img src={empty} alt="No Articles Found" className='w-1/5 h-auto mb-3' />
-                            <h3>You have not purchased any courses yet</h3>
-                            <p>You can purchase courses from the courses page</p>
-                            <div className='w-max mt-5'>
-                                <BaseButton text="Explore Courses" onClick={redirect} />
-                            </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </section>
             )}
         </div>

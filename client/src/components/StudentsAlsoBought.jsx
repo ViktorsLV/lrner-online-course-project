@@ -43,11 +43,10 @@ const StudentsAlsoBought = ({ title, author, mainImage, duration, lessons, price
 StudentsAlsoBought.defaultProps = {
     title: "Test course",
     author: {
-        firstName: 'John',
+        firstName: 'John', 
         lastName: 'Doe',
         avatar: ''
     },
-    // fakeImage: "../assets/Images/blank_image.png",
     hours: "25",
     lessons: "11",
     price: "9.99",

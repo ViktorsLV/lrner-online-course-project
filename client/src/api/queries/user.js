@@ -28,6 +28,7 @@ export const getUserPurchasedCourses = (userId) => {
         purchasedCourses[]->{
             _id,
           title,
+          slug
         }
       }`
     return query;

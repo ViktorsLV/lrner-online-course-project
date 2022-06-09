@@ -40,7 +40,7 @@ function Login() {
                 _type: 'user',
                 firstName: given_name,
                 lastName: family_name,
-                // slug: '', TODO: ??? autogenerate or assign some value
+                slug: `${given_name}-${family_name}`,
                 avatar: picture,
             };
             client.createIfNotExists(doc).then(() => {

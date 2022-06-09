@@ -13,6 +13,7 @@ export const getCourse = (slug) => {
           firstName,
           lastName,
           avatar,
+          description
        },
        tags[]->{
         _id,
@@ -74,6 +75,38 @@ export const getCourses = () => {
 
 export const getLatestCourses = () => {
     const query = `*[_type == "course" ] | order(_createdAt desc)[0...4]{
+        _id,
+        title,
+        price,
+        slug, 
+        mainImage,
+        courseDuration,
+        _createdAt,
+        author -> {
+          firstName,
+          lastName,
+          avatar,
+       },
+       tags[]->{
+        _id,
+        name
+        },
+        category->{
+            title,
+            slug
+        },
+        reviews[]->{
+            review,
+            rating,
+            _id,
+        },
+        "likeCount": count(likedBy)
+    }`
+    return query
+}
+
+export const getOldestCourses = () => {
+    const query = `*[_type == "course" ] | order(_createdAt asc)[0...4]{
         _id,
         title,
         price,
