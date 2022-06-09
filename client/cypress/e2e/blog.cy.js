@@ -4,13 +4,13 @@ describe('endtoend user reading blog', () => {
     cy.findByText(/log in/i)
       .should('be.visible')
       .click()
-      cy.wait(1500)
+      cy.wait(3500)
   })
 
   it('fake logs in',() => {
     cy.findByText(/go back/i)
       .click()
-      .wait(1000)
+      .wait(2000)
   })
 
   it('scrolls to bottom', () => {
@@ -50,6 +50,7 @@ describe('endtoend user reading blog', () => {
 
   it('scrolls back up', () => {
     cy.scrollTo('top', {duration: 2000})
+      .wait(2000)
   })
 
   it('clicks and goes to the blog', () => {
@@ -75,6 +76,7 @@ describe('endtoend user reading blog', () => {
 
   it('scrolls back up', () => {
     cy.scrollTo('top', {duration: 2000})
+      .wait(2000)
   })
   
   it('clicks on soft skills', () => {
@@ -94,7 +96,7 @@ describe('endtoend user reading blog', () => {
   it('clicks and goes to the article', () => {
     cy.findByTestId('article-preview-0')
       .click()
-      .wait(1000)
+      .wait(3000)
   })
 
   it('scrolls to bottom', () => {

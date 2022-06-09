@@ -11,7 +11,7 @@ describe('endtoend user getting course', () => {
   it('fake logs in',() => {
     cy.findByText(/go back/i)
       .click()
-      .wait(1000)
+      .wait(2000)
   })
 
   it('scrolls to bottom', () => {
@@ -51,6 +51,7 @@ describe('endtoend user getting course', () => {
 
   it('scrolls back up', () => {
     cy.scrollTo('top', {duration: 2000})
+      .wait(2000)
   })
   
   it('clicks and goes to the category', () => {
@@ -76,6 +77,7 @@ describe('endtoend user getting course', () => {
 
   it('scrolls back up', () => {
     cy.scrollTo('top', {duration: 2000})
+      .wait(2000)
   })
 
   it('should see the course cards', () => {
