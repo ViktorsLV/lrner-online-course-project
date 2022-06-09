@@ -34,6 +34,7 @@ function BlogSection() {
                         <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
                             {blogs.length > 0 && blogs.map((blog, index) => {
                                 return (
+                                    <div data-testid={`blog-preview-${index}`} key={blog._id}>
                                     <BlogPreview
                                         data-testid={`blog-preview-${index}`}
                                         key={blog._id}
@@ -44,7 +45,8 @@ function BlogSection() {
                                         author={blog.author}
                                         blogCategory={blog.blogCategory}
                                         date='unknown'
-                                    />
+                                        />
+                                    </div>
                                 )
                             })}
                         </div>

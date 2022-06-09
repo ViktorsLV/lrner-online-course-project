@@ -52,7 +52,7 @@ const CourseAbout = ({ title, description, authorFirstName, authorLastName, crea
             </div>
             <div className='mx-10 mt-8'>
                 <h2 className='mb-4 lg:text-left'>Description</h2>
-                <div className='flex flex-row mb-4'>
+                <div data-testid="course-description" className='flex flex-row mb-4'>
                     <p className='mr-2'>{description}
                     </p>
                 </div>

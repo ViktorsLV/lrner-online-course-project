@@ -40,8 +40,9 @@ const BlogArticles = ({ blogSection }) => {
                         <h2>Articles</h2>
                         {blogs.length > 0 ?
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6 ">
-                                {blogs.map(blog => {
+                                {blogs.map((blog, index) => {
                                     return (
+                                        <div data-testid={`article-preview-${index}`} key={blog._id}>
                                         <BlogPreview
                                             key={blog._id}
                                             title={blog.title}
@@ -51,7 +52,8 @@ const BlogArticles = ({ blogSection }) => {
                                             author={blog.author}
                                             blogCategory={blog.blogCategory}
                                             date='unknown'
-                                        />
+                                            />
+                                            </div>
                                     )
                                 })}
                             </div>
