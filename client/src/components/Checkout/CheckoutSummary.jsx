@@ -50,14 +50,6 @@ const CheckoutSummary = () => {
                     _key: uuidv4(),
                 })))
 
-            // patch each item from cartItems and assign a user to purchasedBy value
-            const cartItemsPatch = cartItems.map((x) => client.patch(x._id).setIfMissing({ purchasedBy: [] }).append('purchasedBy',
-                [{
-                    _type: 'reference',
-                    _ref: sub,
-                    _key: uuidv4(),
-                }]))
-
             await client
                 .transaction()
                 .create({
@@ -72,7 +64,6 @@ const CheckoutSummary = () => {
                     ...cartDetails
                 })
                 .patch(userPatch)
-                .patch(cartItemsPatch)
                 .commit()
                 .then((res) => {
                     console.log(res);

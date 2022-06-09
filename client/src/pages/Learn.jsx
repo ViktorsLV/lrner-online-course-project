@@ -3,8 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getCourse } from '../api/queries/course';
 import { getUserPurchasedCourses } from '../api/queries/user';
+import Loader from '../components/common/Loader';
 import { client } from '../utils/client';
 import { Store } from '../utils/Store';
+import LearnCourseContent from './Learn/LearnCourseContent';
+import LearnCourseMedia from './Learn/LearnCourseMedia';
 
 const Learn = () => {
     const [course, setCourse] = useState({});
@@ -37,7 +40,7 @@ const Learn = () => {
         if (purchases !== null) {
             if (hasPurchased) {
                 fetchCourse()
-                console.log(hasPurchased);
+                // console.log(hasPurchased);
             }
             else {
                 toast.error('You must purchase this course to access the learn page.')
@@ -65,7 +68,7 @@ const Learn = () => {
             const course = await client.fetch(query);
             console.log('Course', course)
 
-            setCourse(course);
+            setCourse(course[0]);
             setLoading(false);
         } catch (err) {
             setError(true);
@@ -76,7 +79,22 @@ const Learn = () => {
 
 
     return (
-        <div>Learn {slug}</div>
+        <div className=''>
+            {loading ? <Loader loading={loading} /> : error ? (<div>error message and btn to go back</div>) :
+                course && (
+                    <div className='flex'>
+                        <LearnCourseMedia 
+                            mainImage={course.mainImage}
+                            title={course.title}
+                            description={course.description}
+                            author={course.author}
+                        />
+                        <LearnCourseContent 
+
+                        />
+                    </div>
+                )}
+        </div>
     )
 }
 
