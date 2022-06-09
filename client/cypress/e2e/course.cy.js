@@ -132,5 +132,21 @@ describe('endtoend user getting course', () => {
   it('scrolls back up', () => {
     cy.scrollTo('top', {duration: 2000})
   })
-  
+
+  //Likes the course
+  //Goes to the liked courses
+  //Clicks on liked course
+  //Adds course to the cart
+  //Goes to cart
+  //Sees that course in the cart
+  //Proceeds to checkout
+  //Checks the price and chooses payment method
+  //Completes payment
+  //Goes to profile
+  //Checks the order history
+  //Goes to owned courses
+  //Clicks the course
+  //Starts learning
+
+
 })
