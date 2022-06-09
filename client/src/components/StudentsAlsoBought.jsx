@@ -47,7 +47,6 @@ StudentsAlsoBought.defaultProps = {
         lastName: 'Doe',
         avatar: ''
     },
-    // fakeImage: "../assets/Images/blank_image.png",
     hours: "25",
     lessons: "11",
     price: "9.99",
