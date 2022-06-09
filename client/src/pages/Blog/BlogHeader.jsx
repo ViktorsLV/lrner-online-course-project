@@ -42,11 +42,13 @@ export default function BlogHeader() {
                 </div>
 
                 <div className='bg-black min-h-12 max-h-max flex flex-row gap-5 sm:justify-around px-20 flex-wrap py-5'>
-                    {categories && categories.map(category => (
-                        // <NavLink key={category._id} replace to={`/blog/${category.slug.current}`} className='text-white font-bold'>
+                    {categories && categories.map((category, index) => (
+                        <div  data-testid={`category-navigation-${index}`} key={category._id}>
+                        {/* <NavLink key={category._id} replace to={`/blog/${category.slug.current}`} className='text-white font-bold'> */}
                         <NavLink key={category._id} replace to={`/blog/${category.slug.current}`} className={({ isActive }) => isActive ? activeLink : 'text-white my-auto hover:underline'}>
                             {category.title}
                         </NavLink>
+                        </div>
                     ))}
                 </div>
             </div>

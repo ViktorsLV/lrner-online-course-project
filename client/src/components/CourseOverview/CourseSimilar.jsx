@@ -29,8 +29,9 @@ const CourseSimilar = () => {
         <div className='flex flex-col mx-10 '>
             <h2 className='mb-4 lg:text-left'>Similar courses</h2>
             {loading ? <Loader loading={loading} /> : error ? (<div>error message and btn to go back</div>) : (
-                courses.length && courses.map(course => {
+                courses.length && courses.map((course, index) => {
                     return (
+                        <div data-testid={`similar-courses-${index}`} key={course._id}>
                         <StudentsAlsoBought
                             key={course._id}
                             title={course.title}
@@ -45,7 +46,8 @@ const CourseSimilar = () => {
                             categories={course.categories}
                             slug={course.slug.current}
                             createdAt={course._createdAt}
-                        />
+                            />
+                            </div>
                     )
                 })
             )}

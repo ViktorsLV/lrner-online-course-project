@@ -70,9 +70,10 @@ const Category = () => {
                     <div className='mt-10'>
                         <h2>Featured courses</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
-                            {courses.length > 0 ? courses.map(course => {
+                            {courses.length > 0 ? courses.map((course, index) => {
                                 // console.log('Course', course);
                                 return (
+                                    <div data-testid={`course-card-${index}`} key={course._id}>
                                     <CourseCard
                                         key={course._id}
                                         title={course.title}
@@ -88,7 +89,8 @@ const Category = () => {
                                         slug={course.slug.current}
                                         reviewCount={course.reviews?.length || 0}
                                         likeCount={course.likeCount}
-                                    />
+                                        />
+                                        </div>
                                 )
                             }) :
                                 <div className='w-full mx-auto mt-20 flex flex-col justify-center items-center'>

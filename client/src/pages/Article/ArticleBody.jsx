@@ -68,7 +68,7 @@ const ArticleBody = () => {
                             <h3 className='text-base'>{article.blogCategory.title}</h3>
                             <h1 className='text-3xl md:text-5xl mt-2'>{article.title}</h1>
                         </div>
-                        <div className='flex flex-row justify-between'>
+                        <div data-testid="article-author" className='flex flex-row justify-between'>
                             <div className='flex flex-row gap-4'>
                                 {article.author?.avatar ? <img className='ml-2 h-14 w-14 rounded-full min-w-14 min-h-14' src={article.author?.avatar} alt="Author" referrerPolicy="no-referrer" /> :
                                     <UserCircleIcon className='h-14 w-14 min-w-14 min-h-14' />
