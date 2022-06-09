@@ -57,6 +57,10 @@ describe('endtoend user getting course', () => {
       .click()
   })
 
+  it('scrolls to bottom', () => {
+    cy.scrollTo('bottom', {duration: 2000})
+  })
+
   it('should see big title', () => {
     cy.get('h1').should('be.visible')
   })
@@ -68,10 +72,15 @@ describe('endtoend user getting course', () => {
   it('should have Articles section', () => {
     cy.findByRole('heading', {  name: /articles/i})
   })
+
+  it('scrolls back up', () => {
+    cy.scrollTo('top', {duration: 2000})
+  })
   
   it('clicks on soft skills', () => {
     cy.findByRole('link', {  name: /soft skills/i})
       .click()
+      .wait(3000)
   })
 
   it('should render soft skills articles', () => {
@@ -79,6 +88,7 @@ describe('endtoend user getting course', () => {
       .should('have.length.above', 1)
 
       cy.findByTestId('article-preview-0')
+      .wait(1500)
   })
 
   it('clicks and goes to the article', () => {
@@ -87,6 +97,11 @@ describe('endtoend user getting course', () => {
       .wait(1000)
   })
 
+  it('scrolls to bottom', () => {
+    cy.scrollTo('bottom', {duration: 2000})
+  })
+
+  
   it('should see article, and its title and author', () => {
     cy.get('h1').should('be.visible')
 
