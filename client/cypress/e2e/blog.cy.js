@@ -1,4 +1,4 @@
-describe('endtoend user getting course', () => {
+describe('endtoend user reading blog', () => {
   it('visits the site first time, and clicks on log in', () => {
     cy.visit('http://localhost:3000/')
     cy.findByText(/log in/i)
