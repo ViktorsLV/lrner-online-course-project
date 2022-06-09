@@ -43,7 +43,7 @@ const StudentsAlsoBought = ({ title, author, mainImage, duration, lessons, price
 StudentsAlsoBought.defaultProps = {
     title: "Test course",
     author: {
-        firstName: 'John',
+        firstName: 'John', 
         lastName: 'Doe',
         avatar: ''
     },
