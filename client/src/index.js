@@ -6,7 +6,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { StoreProvider } from "./utils/Store";
 
 //TODO ONLY PRODUCTION!!!!
-// console.log = console.warn = console.error = () => {};
+console.log = console.warn = console.error = () => {};
 
   ReactDOM.render(
     <Router>
