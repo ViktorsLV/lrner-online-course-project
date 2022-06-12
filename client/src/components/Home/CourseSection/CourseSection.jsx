@@ -25,7 +25,6 @@ function CourseSection() {
             
                 setLatestCourses(latestCourses);
                 setLoading(false)
-                console.log('COURSES', latestCourses)
         } catch (err) {
             setError(err);
             setLoading(false)
