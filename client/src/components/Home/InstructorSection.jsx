@@ -11,7 +11,7 @@ const InstructorSection = () => {
   // const query = getInstructors()
 
   useEffect(() => {
-    setState({loading: false}) // TODO: delete
+    setState({loading: false})
     // const fetchInstructors = async () => {
     //   try {
     //     const instructors = await client.fetch(query);
