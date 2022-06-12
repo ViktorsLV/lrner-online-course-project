@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getInstructors } from '../../api/queries/instructors';
+// import { getInstructors } from '../../api/queries/instructors';
 import { client } from '../../utils/client';
 import Loader from '../common/Loader'
 import InstructorCard from '../InstructorCard'
@@ -11,7 +11,7 @@ const InstructorSection = () => {
   // const query = getInstructors()
 
   useEffect(() => {
-    setState({loading: false}) // TODO: delete
+    setState({loading: false})
     // const fetchInstructors = async () => {
     //   try {
     //     const instructors = await client.fetch(query);
