@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getInstructors } from '../../api/queries/instructors';
+// import { getInstructors } from '../../api/queries/instructors';
 import { client } from '../../utils/client';
 import Loader from '../common/Loader'
 import InstructorCard from '../InstructorCard'
