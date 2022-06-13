@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getCourses } from '../../api/queries/course';
 import { client } from '../../utils/client';
 import Loader from '../common/Loader';
-import StudentsAlsoBought from '../StudentsAlsoBought';
+import SimilarCourses from '../SimilarCourses';
 
 const CourseSimilar = () => {
 
@@ -31,7 +31,7 @@ const CourseSimilar = () => {
             {loading ? <Loader loading={loading} /> : error ? (<div>error message and btn to go back</div>) : (
                 courses.length && courses.map(course => {
                     return (
-                        <StudentsAlsoBought
+                        <SimilarCourses
                             key={course._id}
                             title={course.title}
                             mainImage={course.mainImage}

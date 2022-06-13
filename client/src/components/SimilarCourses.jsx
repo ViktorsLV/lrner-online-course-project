@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom'
 import fakeImage from '../assets/Images/blank_image.png'
 import dayjs from 'dayjs'
 
-const StudentsAlsoBought = ({ title, author, mainImage, duration, lessons, price, likes, users, tags, categories, slug, createdAt }) => {
+const SimilarCourses = ({ title, author, mainImage, duration, lessons, price, likes, users, tags, categories, slug, createdAt }) => {
     return (
         <NavLink to={`/course/${slug}`}>
-            <div className='flex w-full gap-4'>
+            <div className='flex w-full gap-4 hover:opacity-60'>
                 <div className='flex w-full gap-4'>
                     <div className='cursor-pointer'>
                         {mainImage ? <img src={urlFor(mainImage).width(65).height(65).url()} alt="Post img" className='object-cover ' />
@@ -40,7 +40,7 @@ const StudentsAlsoBought = ({ title, author, mainImage, duration, lessons, price
     )
 }
 
-StudentsAlsoBought.defaultProps = {
+SimilarCourses.defaultProps = {
     title: "Test course",
     author: {
         firstName: 'John', 
@@ -57,4 +57,4 @@ StudentsAlsoBought.defaultProps = {
     slug: "test-course",
 }
 
-export default StudentsAlsoBought
+export default SimilarCourses

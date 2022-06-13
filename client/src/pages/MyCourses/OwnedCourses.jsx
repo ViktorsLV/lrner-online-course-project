@@ -51,6 +51,7 @@ const OwnedCourses = () => {
                         {purchasedCourses.length > 0 ? purchasedCourses.map(course => {
                             return (
                                 <CourseCard
+                                    key={course._id}
                                     title={course.title}
                                     mainImage={course.mainImage}
                                     price={course.price}
