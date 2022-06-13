@@ -14,7 +14,7 @@ const LearnCourseContent = () => {
         { title: 'Final Remarks', lessons: 5, length: '64' },
     ]
     return (
-        <div className='bg-gray-100 h-max w-1/3'>
+        <div className='bg-gray-100 h-max w-full md:w-1/3'>
             <ul className='custom-layout'>
                 {data.map((item, index) => {
                     return (

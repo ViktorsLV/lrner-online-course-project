@@ -6,6 +6,7 @@ import { getUserPurchasedCourses } from '../api/queries/user';
 import Loader from '../components/common/Loader';
 import { client } from '../utils/client';
 import { Store } from '../utils/Store';
+import LearnCourseAbout from './Learn/LearnCourseAbout';
 import LearnCourseContent from './Learn/LearnCourseContent';
 import LearnCourseMedia from './Learn/LearnCourseMedia';
 
@@ -82,15 +83,19 @@ const Learn = () => {
         <div className=''>
             {loading ? <Loader loading={loading} /> : error ? (<div>error message and btn to go back</div>) :
                 course && (
-                    <div className='flex'>
-                        <LearnCourseMedia 
-                            mainImage={course.mainImage}
-                            title={course.title}
-                            description={course.description}
-                            author={course.author}
-                        />
-                        <LearnCourseContent 
+                    <div className='flex flex-col-reverse md:flex-row'>
+                        <div className="flex flex-col w-full md:w-2/3 ">
+                            <LearnCourseMedia
+                                mainImage={course.mainImage}
+                            />
+                            <LearnCourseAbout
+                                title={course.title}
+                                description={course.description}
+                                author={course.author}
 
+                            />
+                        </div>
+                        <LearnCourseContent
                         />
                     </div>
                 )}
