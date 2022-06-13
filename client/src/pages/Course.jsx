@@ -12,34 +12,58 @@ import CourseAbout from '../components/CourseOverview/CourseAbout';
 import CourseSimilar from '../components/CourseOverview/CourseSimilar';
 import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewReviews';
 import Loader from '../components/common/Loader';
+import { getUserPurchasedCourses } from '../api/queries/user';
 
 const Course = () => {
     const { slug } = useParams();
-    const [state, setState] = useState({ course: [], error: '', loading: true });
+    const [course, setCourse] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [purchases, setPurchases] = useState([])
     // const [userCourseList, setUserCourseList] = useState([])
     const { state: { cart, userInfo }, dispatch } = useContext(Store);
     const navigate = useNavigate()
-    const { loading, error, course } = state;
     const userId = userInfo?.sub
+    const purchaseQuery = getUserPurchasedCourses(userId)
 
     const query = getCourse(slug)
     const existItem = cart.cartItems.find((x) => x._id === course._id);
+    const alreadyPurchased = !!(purchases?.filter((p) => p?._id === course?._id))?.length;
 
     useEffect(() => {
         window.scrollTo(0, 0)
         const fetchCourse = async () => {
+            setLoading(true);
             try {
                 const course = await client.fetch(query);
-                console.log('Course', course)
+                // console.log('Course', course)
 
-                setState({ course: course[0], loading: false });
+                setCourse(course[0]);
+                setLoading(false);
             } catch (err) {
-                setState({ loading: false, error: err.message });
+                setError(err);
+                setLoading(false);
                 console.log(err);
             }
         };
         fetchCourse();
     }, [navigate, slug]);
+
+
+    useEffect(() => {
+        if (userInfo !== null) {
+            getUserPurchases()
+        }
+    }, [userInfo])
+
+    const getUserPurchases = async () => {
+        try {
+            const purchasedCourses = await client.fetch(purchaseQuery)
+            setPurchases(purchasedCourses[0].purchasedCourses)
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const addToCartHandler = () => {
         if (userInfo) {
@@ -101,7 +125,8 @@ const Course = () => {
                                     createdAt={course._createdAt}
                                     updatedAt={course._updatedAt}
                                     likes={course.likes}
-                                    reviewCount={course.reviews?.length || 0}
+                                    // reviewCount={course.reviews?.length || 0}
+                                    reviewCount={course.reviewCount || 0}
                                     tags={course.tags}
                                 />
                             </div>
@@ -122,8 +147,9 @@ const Course = () => {
                                     id={course._id}
                                     buttonText={existItem ? 'Go to cart' : 'Add to cart'}
                                     slug={slug}
-                                    reviewCount={course.reviews?.length || 0}
-                                //tags={course.tags}
+                                    // reviewCount={course.reviews?.length || 0}
+                                    reviewCount={course.reviewCount || 0}
+                                    alreadyPurchased={alreadyPurchased}
                                 />
                             </div>
                         </div>
@@ -135,7 +161,11 @@ const Course = () => {
                         <CourseSimilar />
                     </div>
 
-                    <CourseOverviewReviews reviews={course.reviews} />
+                    <CourseOverviewReviews
+                        reviews={course.reviews}
+                        alreadyPurchased={alreadyPurchased}
+                        userId={userId}
+                    />
                 </div>
             )}
         </div>

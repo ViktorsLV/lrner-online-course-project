@@ -32,7 +32,8 @@ export const getCourse = (slug) => {
                 firstName,
                 lastName, 
                 avatar,
-                slug
+                slug,
+                _id
             }
         },
         "likeCount": count(likedBy),

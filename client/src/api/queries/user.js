@@ -60,7 +60,8 @@ export const getUserLikedCoursesDetails = (userId) => {
                 title,
                 slug
             },
-            "likeCount": count(likedBy)
+            "likeCount": count(likedBy),
+            "reviewCount": count(reviews)
         }
       }`
     return query;
@@ -92,7 +93,8 @@ export const getUserPurchasedCoursesDetails = (userId) => {
                 title,
                 slug
             },
-            "likeCount": count(likedBy)
+            "likeCount": count(likedBy),
+            "reviewCount": count(reviews)
         }
       }`
     return query;

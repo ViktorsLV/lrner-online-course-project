@@ -17,24 +17,22 @@ import { getUserLikedCourses, getUserPurchasedCourses } from '../../api/queries/
 import { Link, useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 
-const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText, duration, description, authorFirstName, authorLastName, createdAt, updatedAt, reviewCount }) => {
+const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText, duration, description, authorFirstName, authorLastName, createdAt, updatedAt, reviewCount, alreadyPurchased }) => {
   const { state, dispatch } = useContext(Store);
   const [likes, setLikes] = useState([])
-  const [purchases, setPurchases] = useState([])
+  // const [purchases, setPurchases] = useState([])
   const navigate = useNavigate()
 
   const { userInfo } = state;
   const userId = userInfo?.sub
   const likeQuery = getUserLikedCourses(userId)
-  const purchaseQuery = getUserPurchasedCourses(userId)
 
   const alreadyLiked = !!(likes?.filter((like) => like?._id === id))?.length;
-  const alreadyPurchased = !!(purchases?.filter((p) => p?._id === id))?.length;
+  // const alreadyPurchased = !!(purchases?.filter((p) => p?._id === id))?.length;
 
   useEffect(() => {
     if (userInfo !== null) {
       getUserLikes()
-      getUserPurchases()
     }
   }, [userInfo])
 
@@ -48,14 +46,14 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
     }
   }
 
-  const getUserPurchases = async () => {
-    try {
-      const purchasedCourses = await client.fetch(purchaseQuery)
-      setPurchases(purchasedCourses[0].purchasedCourses)
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // const getUserPurchases = async () => {
+  //   try {
+  //     const purchasedCourses = await client.fetch(purchaseQuery)
+  //     setPurchases(purchasedCourses[0].purchasedCourses)
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   const likeCourse = async (userId) => {
     if (!alreadyLiked) {
