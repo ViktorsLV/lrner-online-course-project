@@ -9,7 +9,7 @@ const Review = ({review, rating, author, createdAt}) => {
                 <UserCircleIcon className='w-12 ml-2 h-12 min-w-14 min-h-14' />
             }
             <div>
-                <p className='text-base text-left font-bold text-neutral-500 leading-5'>{author.firstName} {author.lastName}</p>
+                <p className='text-base text-left font-bold text-neutral-500 leading-5'>{author?.firstName} {author?.lastName}</p>
                 <div>
                     <p className='mt-2'>{review}</p>
                 </div>

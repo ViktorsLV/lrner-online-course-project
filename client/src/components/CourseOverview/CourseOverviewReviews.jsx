@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { client } from '../../utils/client'
 import Review from './Review'
+import { v4 as uuidv4 } from 'uuid';
 
-const CourseOverviewReviews = ({ reviews, alreadyPurchased, userId }) => {
+const CourseOverviewReviews = ({ reviews, alreadyPurchased, userId, reRender, id }) => {
     const [review, setReview] = useState('')
     const [rating, setRating] = useState(null)
 
@@ -13,34 +15,44 @@ const CourseOverviewReviews = ({ reviews, alreadyPurchased, userId }) => {
     };
 
     // calculate if the user has already reviewed the course and assign it to variable
-    const alreadyReviewed = !!(reviews?.filter((x) => x.postedBy._id === userId))?.length;
+    const alreadyReviewed = !!(reviews?.filter((x) => x.postedBy?._id === userId))?.length;
 
     const leaveReview = async (e) => {
         e.preventDefault()
-        console.log('submitted')
-        // const review = {
-        //     _key: uuidv4(),
+        console.log('submitted', review, rating)
+
+        // const data = {
+        //     // _key: uuidv4(),
         //     _type: 'review',
         //     postedBy: {
         //         _type: 'reference',
         //         _ref: userId
         //     },
         //     review: review,
+        //     rating: rating
         // }
-        // const coursePatch = client.patch(id).append('reviews', [review])
+        // const coursePatch = client.patch(id).append('reviews', [data])
+
+        // const reviewPatch = client.patch(id).setIfMissing({ reviews: [] }).append('review', [{
+        //     _type: 'review',
+        //     postedBy: {
+        //         _type: 'reference',
+        //         _ref: userId
+        //     },
+        //     review: review,
+        //     rating: rating
+        // }])
         // await client
         //     .transaction()
-        //     .patch(coursePatch)
+        //     .patch(reviewPatch)
         //     .commit()
         //     .then((res) => {
         //         console.log(res);
-        //         getUserReviews()
-        //     }
-        //     )
+        //         reRender()
+        //     })
         //     .catch((err) => {
         //         console.error('Transaction failed: ', err.message)
-        //     }
-        //     )
+        //     })
     }
 
     return (
@@ -60,33 +72,33 @@ const CourseOverviewReviews = ({ reviews, alreadyPurchased, userId }) => {
                                             <label htmlFor="review" className="block text-sm font-medium text-gray-700">
                                                 Rating:
                                             </label>
-                                            <div className="rating mt-1 flex">
+                                            <div className="rating mt-3 flex">
                                                 <div className='flex flex-col mx-2'>
-                                                    <input type="radio" name="rating-1" value={1} className="" checked={rating == '1'} onChange={changeRating} />
+                                                    <input type="radio" name="rating-1" value={1} className="cursor-pointer ring-accent-500 focus:text-accent-500 focus:ring-accent-500 text-accent-500 active:text-accent-500 border-accent-500" checked={rating == '1'} onChange={changeRating} />
                                                     <label htmlFor="payment-option-2" className="block ml-1 text-lg font-medium text-gray-900">
                                                         1
                                                     </label>
                                                 </div>
                                                 <div className='flex flex-col mx-2'>
-                                                    <input type="radio" name="rating-2" value={2} className="" checked={rating == '2'} onChange={changeRating} />
+                                                    <input type="radio" name="rating-2" value={2} className="cursor-pointer ring-accent-500 focus:text-accent-500 focus:ring-accent-500 text-accent-500 active:text-accent-500 border-accent-500" checked={rating == '2'} onChange={changeRating} />
                                                     <label htmlFor="payment-option-2" className="block ml-1 text-lg font-medium text-gray-900">
                                                         2
                                                     </label>
                                                 </div>
                                                 <div className='flex flex-col mx-2'>
-                                                    <input type="radio" name="rating-3" value={3} className="" checked={rating == '3'} onChange={changeRating} />
+                                                    <input type="radio" name="rating-3" value={3} className="cursor-pointer ring-accent-500 focus:text-accent-500 focus:ring-accent-500 text-accent-500 active:text-accent-500 border-accent-500" checked={rating == '3'} onChange={changeRating} />
                                                     <label htmlFor="payment-option-2" className="block ml-1 text-lg font-medium text-gray-900">
                                                         3
                                                     </label>
                                                 </div>
                                                 <div className='flex flex-col mx-2'>
-                                                    <input type="radio" name="rating-4" value={4} className="" checked={rating == '4'} onChange={changeRating} />
+                                                    <input type="radio" name="rating-4" value={4} className="cursor-pointer ring-accent-500 focus:text-accent-500 focus:ring-accent-500 text-accent-500 active:text-accent-500 border-accent-500" checked={rating == '4'} onChange={changeRating} />
                                                     <label htmlFor="payment-option-2" className="block ml-1 text-lg font-medium text-gray-900">
                                                         4
                                                     </label>
                                                 </div>
                                                 <div className='flex flex-col mx-2'>
-                                                    <input type="radio" name="rating-5" value={5} className="" checked={rating == '5'} onChange={changeRating} />
+                                                    <input type="radio" name="rating-5" value={5} className="cursor-pointer ring-accent-500 focus:text-accent-500 focus:ring-accent-500 text-accent-500 active:text-accent-500 border-accent-500" checked={rating == '5'} onChange={changeRating} />
                                                     <label htmlFor="payment-option-2" className="block ml-1 text-lg font-medium text-gray-900">
                                                         5
                                                     </label>
@@ -115,21 +127,21 @@ const CourseOverviewReviews = ({ reviews, alreadyPurchased, userId }) => {
                                 </div>
 
                                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                {!rating || !review ? 
-                                    <button
-                                        disabled
-                                        className="bg-gray-300 inline-flex justify-center px-4 py-2 rounded-full text-white w-max text-center hover:cursor-not-allowed "
-                                    >
-                                        Save
-                                    </button>
-                                    :
-                                    <button
-                                        type="submit"
-                                        className="bg-accent-500 inline-flex justify-center px-4 py-2 hover:opacity-90 rounded-full text-white w-max text-center hover:cursor-pointer "
-                                    >
-                                        Save
-                                    </button>
-                            }
+                                    {!rating || !review ?
+                                        <button
+                                            disabled
+                                            className="bg-gray-300 inline-flex justify-center px-4 py-2 rounded-full text-white w-max text-center hover:cursor-not-allowed "
+                                        >
+                                            Save
+                                        </button>
+                                        :
+                                        <button
+                                            type="submit"
+                                            className="bg-accent-500 inline-flex justify-center px-4 py-2 hover:opacity-90 rounded-full text-white w-max text-center hover:cursor-pointer "
+                                        >
+                                            Save
+                                        </button>
+                                    }
                                 </div>
 
                             </div>
@@ -143,7 +155,7 @@ const CourseOverviewReviews = ({ reviews, alreadyPurchased, userId }) => {
                         <Review
                             key={review._id}
                             createdAt={review._createdAt}
-                            author={review.postedBy}
+                            author={review?.postedBy}
                             rating={review.rating}
                             review={review.review}
                         />

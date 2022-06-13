@@ -32,20 +32,6 @@ const Course = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        const fetchCourse = async () => {
-            setLoading(true);
-            try {
-                const course = await client.fetch(query);
-                // console.log('Course', course)
-
-                setCourse(course[0]);
-                setLoading(false);
-            } catch (err) {
-                setError(err);
-                setLoading(false);
-                console.log(err);
-            }
-        };
         fetchCourse();
     }, [navigate, slug]);
 
@@ -55,6 +41,21 @@ const Course = () => {
             getUserPurchases()
         }
     }, [userInfo])
+
+    const fetchCourse = async () => {
+        setLoading(true);
+        try {
+            const course = await client.fetch(query);
+            // console.log('Course', course)
+
+            setCourse(course[0]);
+            setLoading(false);
+        } catch (err) {
+            setError(err);
+            setLoading(false);
+            console.log(err);
+        }
+    };
 
     const getUserPurchases = async () => {
         try {
@@ -150,7 +151,7 @@ const Course = () => {
                                     // reviewCount={course.reviews?.length || 0}
                                     reviewCount={course.reviewCount || 0}
                                     alreadyPurchased={alreadyPurchased}
-                                />
+                                    />
                             </div>
                         </div>
 
@@ -162,9 +163,11 @@ const Course = () => {
                     </div>
 
                     <CourseOverviewReviews
+                        id={course._id}
                         reviews={course.reviews}
                         alreadyPurchased={alreadyPurchased}
                         userId={userId}
+                        reRender={fetchCourse}
                     />
                 </div>
             )}
