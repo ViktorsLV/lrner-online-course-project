@@ -10,7 +10,7 @@ module.exports = {
           200: '#DFE6E6',
           300: '#EBF2F2',
           400: '#C6CCCC',
-          500: '#F3FBfB', // main
+          500: '#F3FBfB', // main...
           600: '#636666',
         },
         secondary: {
